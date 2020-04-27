@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="baidu-site-verification" content="093lY4ziMu" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="description" content="Abel的个人博客">
+    <meta name="keyword"  content="前端, 学习笔记, 生活">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!--<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>-->
+    <title>
+        
+          基于Hexo-GitHub建立的个人博客踩坑纪要 - Run!Abel!
+        
+    </title>
+
+    <link rel="canonical" href="https://abel.run/2020/04/25/基于Hexo-GitHub建立的个人博客踩坑纪要/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS --> 
+    
+        
+<link rel="stylesheet" href="/css/dusign-light.css">
+
+        
+<link rel="stylesheet" href="/css/dusign-common-light.css">
+
+        
+<link rel="stylesheet" href="/css/font-awesome.css">
+
+        
+<link rel="stylesheet" href="/css/toc.css">
+
+        <!-- background effects end -->
+    
+    
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    
+<link rel="stylesheet" href="/css/widget.css">
+
+
+    
+<link rel="stylesheet" href="/css/rocket.css">
+
+
+    
+<link rel="stylesheet" href="/css/signature.css">
+
+
+    
+<link rel="stylesheet" href="/css/fonts.googleapis.css">
+
+
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <!-- photography -->
+    
+<link rel="stylesheet" href="/css/photography.css">
+
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- background effects start -->
+    
+    <!-- background effects end -->
+
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            
+                background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../../../../img/default.jpg')
+                /*post*/
+            
+        
+    }
+    
+    #signature{
+        background-image: url('/img/signature/dusign.png');
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#踩坑纪要" title="踩坑纪要">踩坑纪要</a>
+                            
+                        </div>
+                        <h1>基于Hexo-GitHub建立的个人博客踩坑纪要</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by Abel on
+                            2020-04-25
+                        </span>
+
+                        
+                            <div class="blank_box"></div>
+                            <span class="meta">
+                                Words <span class="post-count">868</span> and
+                                Reading Time <span class="post-count">3</span> Minutes
+                            </span>
+                            <div class="blank_box"></div>
+                            <!-- 不蒜子统计 start -->
+                            <span class="meta">
+                                Viewed <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Times
+                            </span>
+                            <!-- 不蒜子统计 end -->
+                        
+
+                    </div>
+                
+
+                </div>
+            </div>
+        </div>      
+    </div>
+
+    
+    <div class="waveWrapper">
+        <div class="wave wave_before" style="background-image: url('/img/wave-light.png')"></div>
+        <div class="wave wave_after" style="background-image: url('/img/wave-light.png')"></div>
+    </div>
+    
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Run！Abel ！</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">首页</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">月刊</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">关于我</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/categories/">分类</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/photography/">摄影</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">标签</a>
+                        </li>
+                        
+                    
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>参考文章：</p>
+<ul>
+<li><a href="https://juejin.im/post/5e9b3e87e51d4546d439834a#heading-18" target="_blank" rel="noopener">彻底搞懂如何使用Hexo+GitHubPages搭建个人博客</a></li>
+</ul>
+<p>个人博客网站：</p>
+<ul>
+<li><a href="https://www.abel.run/" target="_blank" rel="noopener">https://www.abel.run/</a></li>
+</ul>
+<p>搭建前提准备：</p>
+<ul>
+<li>node环境</li>
+<li>GitHub账号</li>
+<li>安装有git，并配置了用户以及ssh密钥</li>
+</ul>
+<blockquote>
+<p>大致流程为：</p>
+<p>在GitHub上面初始化一个仓库，开放master主干为GitHub Pages的源文件，复制该仓库的ssh地址。在本地通过初始化hexo根目录，并安装所需依赖，配置_config.yml文件，安装hexo提供的上传插件，生成博客并上g传到GitHub上面</p>
+</blockquote>
+<h2 id="0-记录点不同"><a href="#0-记录点不同" class="headerlink" title="0.记录点不同"></a>0.记录点不同</h2><blockquote>
+<p>大致的流程都在参考文章有了详细的描述，这里只记录自己根据参考文章实现的过程中遇到的一些小的坑</p>
+</blockquote>
+<h3 id="一-关于-config-yml的配置"><a href="#一-关于-config-yml的配置" class="headerlink" title="一.关于_config.yml的配置"></a>一.关于_config.yml的配置</h3><blockquote>
+<p>这里只记录配置第一次博客上传的要点</p>
+</blockquote>
+<h4 id="1-上传地址的配置"><a href="#1-上传地址的配置" class="headerlink" title="1.上传地址的配置"></a>1.上传地址的配置</h4><blockquote>
+<p>上传地址的配置关系着能否准确的连接仓库完成上传指令</p>
+</blockquote>
+<p>以下是我的上传配置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github.com:Abell99/Abell99.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+<h5 id="1-1repo的准确获取"><a href="#1-1repo的准确获取" class="headerlink" title="1.1repo的准确获取"></a>1.1repo的准确获取</h5><ul>
+<li>找到目标仓库</li>
+<li>使用ssh连接</li>
+<li>复制上传地址</li>
+</ul>
+<p><img src="/2020/04/25/%E5%9F%BA%E4%BA%8EHexo-GitHub%E5%BB%BA%E7%AB%8B%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E8%B8%A9%E5%9D%91%E7%BA%AA%E8%A6%81/2020042501.png" alt="复制上传地址"></p>
+<h4 id="2-css样式的地址配置"><a href="#2-css样式的地址配置" class="headerlink" title="2.css样式的地址配置"></a>2.css样式的地址配置</h4><blockquote>
+<p>因为上传到仓库后，引用地址发生改变，因此我们需要配置基准地址，以确保在上传至仓库后，css样式得以完整的显示</p>
+</blockquote>
+<p>以下是我的配置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">url: https:<span class="comment">//abell99.github.io</span></span><br><span class="line">root: <span class="regexp">/Abell99/</span></span><br></pre></td></tr></table></figure>
+<p>细节：url为网址，root为仓库名，区分大小写，url地址最后不跟“/”，而root要使用“/”包住</p>
+<p>注意：url,root并非必须设置成这样，可根据资源所在位置进行调整。</p>
+<h5 id="2-1url地址的获取"><a href="#2-1url地址的获取" class="headerlink" title="2.1url地址的获取"></a>2.1url地址的获取</h5><p><img src="/2020/04/25/%E5%9F%BA%E4%BA%8EHexo-GitHub%E5%BB%BA%E7%AB%8B%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E8%B8%A9%E5%9D%91%E7%BA%AA%E8%A6%81/2020042502.png" alt="精准获取url1"></p>
+<p><img src="/2020/04/25/%E5%9F%BA%E4%BA%8EHexo-GitHub%E5%BB%BA%E7%AB%8B%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E8%B8%A9%E5%9D%91%E7%BA%AA%E8%A6%81/2020042503.png" alt="精准获取url2"></p>
+<ul>
+<li>打开仓库设置界面</li>
+<li>找到GitHub Pages下提供的url地址</li>
+</ul>
+<h3 id="二-新建文章以及图片显示问题"><a href="#二-新建文章以及图片显示问题" class="headerlink" title="二.新建文章以及图片显示问题"></a>二.新建文章以及图片显示问题</h3><blockquote>
+<p>默认的新建文章是不配对应的图片文件的，需要安装插件</p>
+</blockquote>
+<h4 id="1-配置-config-yml"><a href="#1-配置-config-yml" class="headerlink" title="1.配置_config.yml"></a>1.配置_config.yml</h4><ul>
+<li>post_asset_folder的值设为true</li>
+</ul>
+<h4 id="2-安装插件"><a href="#2-安装插件" class="headerlink" title="2.安装插件"></a>2.安装插件</h4><ul>
+<li><code>npm install https://github.com/CodeFalling/hexo-asset-image --save</code></li>
+</ul>
+<h4 id="3-修改插件内容"><a href="#3-修改插件内容" class="headerlink" title="3.修改插件内容"></a>3.修改插件内容</h4><ul>
+<li>打开/node_modules/hexo-asset-image/index.js，将内容更换为下面的代码</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"><span class="keyword">var</span> cheerio = <span class="built_in">require</span>(<span class="string">'cheerio'</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getPosition</span>(<span class="params">str, m, i</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> str.split(m, i).join(m).length;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> version = <span class="built_in">String</span>(hexo.version).split(<span class="string">'.'</span>);</span><br><span class="line">hexo.extend.filter.register(<span class="string">'after_post_render'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> config = hexo.config;</span><br><span class="line">  <span class="keyword">if</span>(config.post_asset_folder)&#123;</span><br><span class="line">    	<span class="keyword">var</span> link = data.permalink;</span><br><span class="line">	<span class="keyword">if</span>(version.length &gt; <span class="number">0</span> &amp;&amp; <span class="built_in">Number</span>(version[<span class="number">0</span>]) == <span class="number">3</span>)</span><br><span class="line">	   <span class="keyword">var</span> beginPos = getPosition(link, <span class="string">'/'</span>, <span class="number">1</span>) + <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	   <span class="keyword">var</span> beginPos = getPosition(link, <span class="string">'/'</span>, <span class="number">3</span>) + <span class="number">1</span>;</span><br><span class="line">	<span class="comment">// In hexo 3.1.1, the permalink of "about" page is like ".../about/index.html".</span></span><br><span class="line">	<span class="keyword">var</span> endPos = link.lastIndexOf(<span class="string">'/'</span>) + <span class="number">1</span>;</span><br><span class="line">    link = link.substring(beginPos, endPos);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> toprocess = [<span class="string">'excerpt'</span>, <span class="string">'more'</span>, <span class="string">'content'</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; toprocess.length; i++)&#123;</span><br><span class="line">      <span class="keyword">var</span> key = toprocess[i];</span><br><span class="line"> </span><br><span class="line">      <span class="keyword">var</span> $ = cheerio.load(data[key], &#123;</span><br><span class="line">        ignoreWhitespace: <span class="literal">false</span>,</span><br><span class="line">        xmlMode: <span class="literal">false</span>,</span><br><span class="line">        lowerCaseTags: <span class="literal">false</span>,</span><br><span class="line">        decodeEntities: <span class="literal">false</span></span><br><span class="line">      &#125;);</span><br><span class="line"></span><br><span class="line">      $(<span class="string">'img'</span>).each(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> ($(<span class="keyword">this</span>).attr(<span class="string">'src'</span>))&#123;</span><br><span class="line">			<span class="comment">// For windows style path, we replace '\' to '/'.</span></span><br><span class="line">			<span class="keyword">var</span> src = $(<span class="keyword">this</span>).attr(<span class="string">'src'</span>).replace(<span class="string">'\\'</span>, <span class="string">'/'</span>);</span><br><span class="line">			<span class="keyword">if</span>(!<span class="regexp">/http[s]*.*|\/\/.*/</span>.test(src) &amp;&amp;</span><br><span class="line">			   !<span class="regexp">/^\s*\//</span>.test(src)) &#123;</span><br><span class="line">			  <span class="comment">// For "about" page, the first part of "src" can't be removed.</span></span><br><span class="line">			  <span class="comment">// In addition, to support multi-level local directory.</span></span><br><span class="line">			  <span class="keyword">var</span> linkArray = link.split(<span class="string">'/'</span>).filter(<span class="function"><span class="keyword">function</span>(<span class="params">elem</span>)</span>&#123;</span><br><span class="line">				<span class="keyword">return</span> elem != <span class="string">''</span>;</span><br><span class="line">			  &#125;);</span><br><span class="line">			  <span class="keyword">var</span> srcArray = src.split(<span class="string">'/'</span>).filter(<span class="function"><span class="keyword">function</span>(<span class="params">elem</span>)</span>&#123;</span><br><span class="line">				<span class="keyword">return</span> elem != <span class="string">''</span> &amp;&amp; elem != <span class="string">'.'</span>;</span><br><span class="line">			  &#125;);</span><br><span class="line">			  <span class="keyword">if</span>(srcArray.length &gt; <span class="number">1</span>)</span><br><span class="line">				srcArray.shift();</span><br><span class="line">			  src = srcArray.join(<span class="string">'/'</span>);</span><br><span class="line">			  $(<span class="keyword">this</span>).attr(<span class="string">'src'</span>, config.root + link + src);</span><br><span class="line">			  <span class="built_in">console</span>.info&amp;&amp;<span class="built_in">console</span>.info(<span class="string">"update link as:--&gt;"</span>+config.root + link + src);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="built_in">console</span>.info&amp;&amp;<span class="built_in">console</span>.info(<span class="string">"no src attr, skipped..."</span>);</span><br><span class="line">			<span class="built_in">console</span>.info&amp;&amp;<span class="built_in">console</span>.info($(<span class="keyword">this</span>));</span><br><span class="line">		&#125;</span><br><span class="line">      &#125;);</span><br><span class="line">      data[key] = $.html();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="4-引入方法"><a href="#4-引入方法" class="headerlink" title="4.引入方法"></a>4.引入方法</h4><p>图示文件地址目录结构</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">如何在博客文档中插入图片</span><br><span class="line">---图片<span class="number">1.</span>jpg</span><br><span class="line">如何在博客文档中插入图片.md</span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用<code>![描述文字](如何在博客文档中插入图片\图片1.jpg)</code></li>
+</ul>
+
+                
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                    
+                </ul>
+
+                <!-- tip start -->
+                
+
+                
+                <div class="comment_notes">
+                    <p>
+                        This is copyright.
+                    </p>
+                </div>
+                
+                <!-- tip end -->
+
+                <!-- Music start-->
+                
+                
+<link rel="stylesheet" href="/css/music-player/fonts/iconfont.css">
+
+
+<link rel="stylesheet" href="/css/music-player/css/reset.css">
+
+
+<link rel="stylesheet" href="/css/music-player/css/player.css">
+
+
+<div class="music-player">
+    <audio class="music-player__audio" ></audio>
+    <div class="music-player__main">
+        <div class="music-player__blur"></div>
+        <div class="music-player__disc">
+            <div class="music-player__image">
+                <img width="100%" src="" alt="">
+            </div>
+            <div class="music-player__pointer"><img width="100%" src="/img/cd_tou.png" alt=""></div>
+        </div>
+        <div class="music-player__controls">
+            <div class="music__info">
+                <h3 class="music__info--title">...</h3>
+                <p class="music__info--singer">...</p>
+            </div>
+            <div class="player-control">
+                <div class="player-control__content">
+                    <div class="player-control__btns">
+                        <div class="player-control__btn player-control__btn--prev"><i class="iconfont icon-prev"></i></div>
+                        <div class="player-control__btn player-control__btn--play"><i class="iconfont icon-play"></i></div>
+                        <div class="player-control__btn player-control__btn--next"><i class="iconfont icon-next"></i></div>
+                        <div class="player-control__btn player-control__btn--mode"><i class="iconfont icon-loop"></i></div>
+                    </div>
+                    <div class="player-control__volume">
+                        <div class="control__volume--icon player-control__btn"><i class="iconfont icon-volume"></i></div>
+                        <div class="control__volume--progress player_progress"></div>
+                    </div>
+                </div>
+                <div class="player-control__content">
+                    <div class="player__song--progress player_progress"></div>
+                    <div class="player__song--timeProgess nowTime">00:00</div>
+                    <div class="player__song--timeProgess totalTime">00:00</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/js/music-player/utill.js"></script>
+
+
+<script src="/js/music-player/jquery.min.js"></script>
+
+
+<script src="/js/music-player/player.js"></script>
+
+
+                
+                <!-- Music end -->
+
+                <!-- Sharing -->
+                
+                <div class="social-share"  data-wechat-qrcode-helper="" align="center"></div>
+                <!--  css & js -->
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+                
+                <!-- Sharing -->
+
+                <!-- gitment start -->
+                
+                <!-- gitment end -->
+
+                <!-- 来必力City版安装代码 -->
+                
+                <!-- City版安装代码已完成 -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      
+        <aside id="sidebar">
+          <div id="toc" class="toc-article">
+          <strong class="toc-title">Contents</strong>
+          
+            
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#0-记录点不同"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">0.记录点不同</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#一-关于-config-yml的配置"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">一.关于_config.yml的配置</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#1-上传地址的配置"><span class="toc-nav-number">1.1.1.</span> <span class="toc-nav-text">1.上传地址的配置</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#1-1repo的准确获取"><span class="toc-nav-number">1.1.1.1.</span> <span class="toc-nav-text">1.1repo的准确获取</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#2-css样式的地址配置"><span class="toc-nav-number">1.1.2.</span> <span class="toc-nav-text">2.css样式的地址配置</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#2-1url地址的获取"><span class="toc-nav-number">1.1.2.1.</span> <span class="toc-nav-text">2.1url地址的获取</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#二-新建文章以及图片显示问题"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">二.新建文章以及图片显示问题</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#1-配置-config-yml"><span class="toc-nav-number">1.2.1.</span> <span class="toc-nav-text">1.配置_config.yml</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#2-安装插件"><span class="toc-nav-number">1.2.2.</span> <span class="toc-nav-text">2.安装插件</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#3-修改插件内容"><span class="toc-nav-number">1.2.3.</span> <span class="toc-nav-text">3.修改插件内容</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#4-引入方法"><span class="toc-nav-number">1.2.4.</span> <span class="toc-nav-text">4.引入方法</span></a></li></ol></li></ol></li></ol>
+            
+          
+          </div>
+        </aside>
+      
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#踩坑纪要" title="踩坑纪要">踩坑纪要</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="https://blog.csdn.net/d_Nail" target="_blank">陈静波的博客</a></li>
+                    
+                        <li><a href="#" target="_blank">王飞的博客</a></li>
+                    
+                        <li><a href="https://github.com/dusign" target="_blank">陈超逸的博客</a></li>
+                    
+                        <li><a href="#" target="_blank">Other</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+
+
+<style  type="text/css">
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Abell99">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Abel 2020 
+                    <br>
+                    Powered by 
+                    <a href="https://github.com/dusign/hexo-theme-snail" target="_blank" rel="noopener">
+                        <i>hexo-theme-snail</i>
+                    </a> | 
+                    <iframe name="star" style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0"
+                        width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=dusign&repo=hexo-theme-snail&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- Search -->
+
+<script src="/js/search.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://abel.run/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Search -->
+
+    <script type="text/javascript">      
+        var search_path = "search.xml";
+        if (search_path.length == 0) {
+            search_path = "search.xml";
+        }
+    var path = "/" + search_path;
+    searchFunc(path, 'local-search-input', 'local-search-result');
+    </script>
+
+
+<!-- busuanzi -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+
+    
+        <!-- background effects line -->
+        
+
+        
+            <script type="text/javascript" src="/js/mouse-click.js" content='[&quot;🌱&quot;,&quot;just do it&quot;,&quot;🍀&quot;]' color='[&quot;rgb(121,93,179)&quot; ,&quot;rgb(76,180,231)&quot; ,&quot;rgb(184,90,154)&quot;]'></script>
+        
+
+        <!-- background effects end -->
+    
+
+    <!--<script size="50" alpha='0.3' zIndex="-999" src="/js/ribbonStatic.js"></script>-->
+    
+        <script src="/js/ribbonDynamic.js"></script>
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+</body>
+
+</html>
