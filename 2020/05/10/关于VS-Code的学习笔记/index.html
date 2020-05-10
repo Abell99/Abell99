@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="baidu-site-verification" content="093lY4ziMu" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="description" content="Abel的个人博客">
+    <meta name="keyword"  content="前端, 学习笔记, 生活">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!--<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>-->
+    <title>
+        
+          关于VS Code的学习笔记 - Run!Abel!
+        
+    </title>
+
+    <link rel="canonical" href="https://abel.run/2020/05/10/关于VS-Code的学习笔记/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS --> 
+    
+        
+<link rel="stylesheet" href="/css/dusign-light.css">
+
+        
+<link rel="stylesheet" href="/css/dusign-common-light.css">
+
+        
+<link rel="stylesheet" href="/css/font-awesome.css">
+
+        
+<link rel="stylesheet" href="/css/toc.css">
+
+        <!-- background effects end -->
+    
+    
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    
+<link rel="stylesheet" href="/css/widget.css">
+
+
+    
+<link rel="stylesheet" href="/css/rocket.css">
+
+
+    
+<link rel="stylesheet" href="/css/signature.css">
+
+
+    
+<link rel="stylesheet" href="/css/fonts.googleapis.css">
+
+
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <!-- photography -->
+    
+<link rel="stylesheet" href="/css/photography.css">
+
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- background effects start -->
+    
+    <!-- background effects end -->
+
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            
+                background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../../../../img/default.jpg')
+                /*post*/
+            
+        
+    }
+    
+    #signature{
+        background-image: url('/img/signature/dusign.png');
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#开发工具的使用" title="开发工具的使用">开发工具的使用</a>
+                            
+                        </div>
+                        <h1>关于VS Code的学习笔记</h1>
+                        <h2 class="subheading">更换的编辑器所做的一些补充学习</h2>
+                        <span class="meta">
+                            Posted by Abel on
+                            2020-05-10
+                        </span>
+
+                        
+                            <div class="blank_box"></div>
+                            <span class="meta">
+                                Words <span class="post-count">2.2k</span> and
+                                Reading Time <span class="post-count">8</span> Minutes
+                            </span>
+                            <div class="blank_box"></div>
+                            <!-- 不蒜子统计 start -->
+                            <span class="meta">
+                                Viewed <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Times
+                            </span>
+                            <!-- 不蒜子统计 end -->
+                        
+
+                    </div>
+                
+
+                </div>
+            </div>
+        </div>      
+    </div>
+
+    
+    <div class="waveWrapper">
+        <div class="wave wave_before" style="background-image: url('/img/wave-light.png')"></div>
+        <div class="wave wave_after" style="background-image: url('/img/wave-light.png')"></div>
+    </div>
+    
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Run！Abel ！</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">首页</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">月刊</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">关于我</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/categories/">分类</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/photography/">摄影</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">标签</a>
+                        </li>
+                        
+                    
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <blockquote>
+<p>工欲善其事必先利其器</p>
+<p>关于vscode的学习笔记</p>
+</blockquote>
+<h2 id="1-Command-Palette命令面板"><a href="#1-Command-Palette命令面板" class="headerlink" title="1 Command Palette命令面板"></a>1 Command Palette命令面板</h2><ul>
+<li><p>命令面板：<code>Ctrl+Shift+P</code></p>
+<ul>
+<li>可以快速打开命令面板，命令面板可以执行各种命令</li>
+<li>面板命令为模糊查询，记住关键词即可  </li>
+<li>常用的命令，有快捷键的优先使用快捷键<ul>
+<li><code>Minimap</code>：缩略图</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>快捷键：</p>
+<ul>
+<li><code>Ctrl+k,Ctrl+M</code>：快捷键的映射，通过安装扩展，可以使用之前熟悉的软件的快捷键</li>
+<li><code>Ctrl+k,Ctrl+S</code>：在编辑器中查看所有的快捷键<ul>
+<li>当安装扩展后，可能会发生快捷键冲突，可以在这里查询并更改</li>
+</ul>
+</li>
+<li><code>Ctrl+K,Ctrk+R</code>：打开网址<ul>
+<li><a href="https://files.cnblogs.com/files/skyraker/VSCODE_%E5%BF%AB%E6%8D%B7%E9%94%AE.7z" target="_blank" rel="noopener">网上搜罗到的有中文对照的快捷键图例，点击下载</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>常用快捷键</p>
+<ul>
+<li><code>Ctrl+B</code>：侧边栏的显示与隐藏</li>
+<li><p><code>Ctrl+P</code>：将允许您通过键入其他名称导航到任何文件或符号</p>
+</li>
+<li><p><code>Ctrl+Shift+Tab</code>：将循环浏览最后一组打开的文件</p>
+</li>
+<li><code>Ctrl+Shift+O</code>：将允许您导航到文件中的特定符号</li>
+<li><code>Ctrl+G</code>：将允许您导航到文件中的特定行</li>
+<li>Ctrl+`：可以查看程序输出、调试输出、问题输出和终端命令<ul>
+<li>Ctrl+Shift+`：新建终端</li>
+</ul>
+</li>
+<li><code>Ctrl+K之后Ctrl+T</code>：开启主题切换，回车确认主题的更改<ul>
+<li>更多主题：扩展中搜索<code>theme</code></li>
+<li>自定义配置：见视图配置项<code>Settings</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-编辑器视图的控制"><a href="#2-编辑器视图的控制" class="headerlink" title="2 编辑器视图的控制"></a>2 编辑器视图的控制</h2><ul>
+<li><p>编辑器视图，单击文件就可以在编辑器中打开视图，可以同时打开多个文件以不同的方式。</p>
+</li>
+<li><p>可以对编辑器进行配置，例如：字体，颜色，字号登等</p>
+<ul>
+<li>命令：<code>&gt;Open Settings (UI)</code> || <code>&gt;Open Settings (JSON)</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="3-VS-Code基本代码编写"><a href="#3-VS-Code基本代码编写" class="headerlink" title="3  VS Code基本代码编写"></a>3  VS Code基本代码编写</h2><blockquote>
+<p>小细节：</p>
+<ul>
+<li>打开文件单击与双击的区别。单击为浏览状态，单击其他文件的时候会被替换。</li>
+</ul>
+</blockquote>
+<h3 id="3-1-快捷键"><a href="#3-1-快捷键" class="headerlink" title="3.1 快捷键"></a>3.1 快捷键</h3><ul>
+<li><p>最常用的快捷键列表如下</p>
+<p>| 快捷键        | 意义       |<br>| ——————- | ————— |<br>| Ctrl+P        | 浏览文件   |<br>| Ctrl+Shift+F  | 查找       |<br>| Ctrl+W        | 关闭文件   |<br>| Ctrl+/        | 注释       |<br>| Shift+Alt+A   | 块注释     |<br>| Shift+Alt+F   | 格式化文档 |<br>| Ctrl+K,Ctrl+F | 格式化选中 |<br>| Ctrl+Shift+K  | 删除行     |<br>|               |            |</p>
+</li>
+</ul>
+<h3 id="3-2-选择多行"><a href="#3-2-选择多行" class="headerlink" title="3.2 选择多行"></a>3.2 选择多行</h3><ul>
+<li><p><code>Alt+click</code> || <code>Ctrl+Alt+按住滑轮上下滑动</code> ：插入多个光标</p>
+</li>
+<li><p><code>Ctrl+D</code>：选择相同的word</p>
+</li>
+</ul>
+<h2 id="4-VS-Code扩展市场"><a href="#4-VS-Code扩展市场" class="headerlink" title="4 VS Code扩展市场"></a>4 VS Code扩展市场</h2><blockquote>
+<p>VS Code之所以强大，就是因为可以添加扩展，并且扩展丰富，好用</p>
+</blockquote>
+<p>4.1 使用VS Code扩展</p>
+<ul>
+<li><p>浏览扩展</p>
+</li>
+<li><p>安装扩展</p>
+</li>
+<li><p>扩展详细</p>
+</li>
+<li><p>过滤扩展</p>
+</li>
+<li><p>排序扩展</p>
+</li>
+<li><p>搜索扩展</p>
+</li>
+<li><p>管理扩展</p>
+<ul>
+<li><p>安装</p>
+</li>
+<li><p>装卸</p>
+</li>
+<li>启用</li>
+<li>禁用</li>
+</ul>
+</li>
+<li><p>扩展分类</p>
+</li>
+<li><p>更新扩展</p>
+</li>
+</ul>
+<h2 id="5-VS-Code-代码补全-IntelliSense"><a href="#5-VS-Code-代码补全-IntelliSense" class="headerlink" title="5 VS Code 代码补全(IntelliSense)"></a>5 VS Code 代码补全(IntelliSense)</h2><blockquote>
+<p>VS Code的代码补全功能依赖各种扩展，例如：java、Python、Go、C#等等，IntellSense可以实现代码补全，内容辅助，代码提示等功能</p>
+</blockquote>
+<ul>
+<li>安装所需扩展</li>
+<li>输入代码按Tab或者Enter来实现代码补全</li>
+</ul>
+<h2 id="6-VS-Code-代码导航"><a href="#6-VS-Code-代码导航" class="headerlink" title="6 VS Code 代码导航"></a>6 VS Code 代码导航</h2><h3 id="6-1-快速文件导航"><a href="#6-1-快速文件导航" class="headerlink" title="6.1 快速文件导航"></a>6.1 快速文件导航</h3><blockquote>
+<p>VS Code可以快速在文件之间进行导航</p>
+</blockquote>
+<ul>
+<li><code>Ctrl+P</code>：快速打开文件</li>
+<li><code>Ctrl+Tab</code>：已打开的文件中循环切换</li>
+</ul>
+<h3 id="6-2-跳转到文件定义处"><a href="#6-2-跳转到文件定义处" class="headerlink" title="6.2 跳转到文件定义处"></a>6.2 跳转到文件定义处</h3><ul>
+<li><code>F12</code>：可以跳转到文件定义的地方，同：<code>Ctrl+Alt+Click</code></li>
+<li><code>Ctrl+鼠标经过</code>：可以显示帮助信息，告诉我们文件定义的地方在哪里</li>
+<li><code>Ctrl+Shift+O</code>：跳转到Symbol(方法或者变量)，如果文件很大，方法很多的时候可以使用它</li>
+</ul>
+<h3 id="6-3-Peek"><a href="#6-3-Peek" class="headerlink" title="6.3 Peek"></a>6.3 Peek</h3><ul>
+<li><code>Shift+F12</code>：Peek可以嵌入在当前页面进行浏览，这样可以很方便，也可以右键点击选择Peek</li>
+</ul>
+<h3 id="6-4-括号匹配"><a href="#6-4-括号匹配" class="headerlink" title="6.4 括号匹配"></a>6.4 括号匹配</h3><ul>
+<li><code>Ctrl+Shift+\</code>：如果一个方法内容很多，并且有很多方法，使用该快捷键，可以很容易的判断每一个方法的内容区域</li>
+</ul>
+<h2 id="7-VS-Code-代码重构"><a href="#7-VS-Code-代码重构" class="headerlink" title="7 VS Code 代码重构"></a>7 VS Code 代码重构</h2><blockquote>
+<p>源代码重构可以通过重构代码而不用修改运行时行为来提高项目的质量和可维护性，VS Code支持重构操作，例如：Extract Method和Extract Varlable,以改善编辑器中的代码库</p>
+</blockquote>
+<h3 id="7-1-重构代码"><a href="#7-1-重构代码" class="headerlink" title="7.1 重构代码"></a>7.1 重构代码</h3><blockquote>
+<p>重构代码，根据右键选择的不同内容，有不同的重构选择</p>
+</blockquote>
+<ul>
+<li>选择一个完整的方法，可以重构到新的文件中</li>
+<li><p>选择一个return的输出</p>
+<ul>
+<li>重构为一个内部的声明变量</li>
+<li>重构为闭包</li>
+<li>重构为全局变量</li>
+</ul>
+</li>
+<li><p>等等….</p>
+</li>
+</ul>
+<p>…重构有风险，忍住欲望，不要试图重构你不理解的代码。</p>
+<h3 id="7-2-重命名symbol"><a href="#7-2-重命名symbol" class="headerlink" title="7.2 重命名symbol"></a>7.2 重命名symbol</h3><ul>
+<li><code>F2</code>：可以选择符号，例如变量名，方法函数名等等，进行批量重命名</li>
+</ul>
+<h2 id="8-VS-Code-代码调试"><a href="#8-VS-Code-代码调试" class="headerlink" title="8 VS Code 代码调试"></a>8 VS Code 代码调试</h2><blockquote>
+<p>VS Code的一个关键功能就是其出色的调试支持，VS Code的内置调试器有助于加速编辑，编译和调试循环</p>
+</blockquote>
+<h3 id="8-1-调试扩展"><a href="#8-1-调试扩展" class="headerlink" title="8.1 调试扩展"></a>8.1 调试扩展</h3><blockquote>
+<p>VS Code具有对Node.js运行时的内置调制支持，可以调试JavaScript，TypeScript,TypeScript以及任何转换为JavaScript的语言，要调试其他语言和运行时(包括PHP,Ruby,Go,C#,Python,C++,Powershell等)，需要在VS扩展中查找安装调试器扩展。</p>
+</blockquote>
+<ul>
+<li>如果涉及到其他语言，需安装附加调试器</li>
+</ul>
+<h3 id="8-2-添加断点"><a href="#8-2-添加断点" class="headerlink" title="8.2 添加断点"></a>8.2 添加断点</h3><blockquote>
+<p>在编辑器代码区域最左端，点击添加断点</p>
+</blockquote>
+<h3 id="8-3-调试快捷键"><a href="#8-3-调试快捷键" class="headerlink" title="8.3 调试快捷键"></a>8.3 调试快捷键</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>F5</td>
+<td>继续/暂停</td>
+</tr>
+<tr>
+<td>F10</td>
+<td>跳过</td>
+</tr>
+<tr>
+<td>F11</td>
+<td>进入</td>
+</tr>
+<tr>
+<td>Shift+F11</td>
+<td>退出</td>
+</tr>
+<tr>
+<td>Ctrl+Shift+F5</td>
+<td>重新开始</td>
+</tr>
+<tr>
+<td>Shift+F5</td>
+<td>停止</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="9-VS-Code-集成终端"><a href="#9-VS-Code-集成终端" class="headerlink" title="9 VS Code 集成终端"></a>9 VS Code 集成终端</h2><blockquote>
+<p>在Visual Studio Code中，您可以打开一个集成终端，最初从工作区的根目录开始，这可以非常方便，因为您不必切换窗口或更改现有终端的状态以执行快速命令行任务</p>
+</blockquote>
+<h3 id="9-1-打开终端视图"><a href="#9-1-打开终端视图" class="headerlink" title="9.1 打开终端视图"></a>9.1 打开终端视图</h3><ul>
+<li>打开终端：Ctrl+` || view&gt;terminal 菜单 || 命令-&gt;Toggle Integrated Terminal</li>
+<li>Ctrl+Shift+`：新建终端</li>
+</ul>
+<h3 id="9-2-管理多个终端"><a href="#9-2-管理多个终端" class="headerlink" title="9.2 管理多个终端"></a>9.2 管理多个终端</h3><ul>
+<li>添加/删除多个终端</li>
+</ul>
+<h3 id="9-3-配置终端"><a href="#9-3-配置终端" class="headerlink" title="9.3 配置终端"></a>9.3 配置终端</h3><ul>
+<li><p>终端类型,搜索 <code>terminal</code> 进行配置,具体的指向地址根基实际改变</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Command Prompt</span></span><br><span class="line"><span class="string">"terminal.integrated.shell.windows"</span>: <span class="string">"C:\\Windows\\System32\\cmd.exe"</span></span><br><span class="line"><span class="comment">// PowerShell</span></span><br><span class="line"><span class="string">"terminal.integrated.shell.windows"</span>: <span class="string">"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"</span></span><br><span class="line"><span class="comment">// Git Bash</span></span><br><span class="line"><span class="string">"terminal.integrated.shell.windows"</span>: <span class="string">"C:\\Program Files\\Git\\bin\\bash.exe"</span></span><br><span class="line"><span class="comment">// Bash on Ubuntu (on Windows)</span></span><br><span class="line"><span class="string">"terminal.integrated.shell.windows"</span>: <span class="string">"C:\\Windows\\System32\\bash.exe"</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>终端样式</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">terminal.integrated.fontFamily</span><br><span class="line">terminal.integrated.fontSize</span><br><span class="line">terminal.integrated.fontWeight</span><br><span class="line">terminal.integrated.fontWeightBold</span><br><span class="line">terminal.integrated.lineHeight</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="10-VS-Code使用Emmet"><a href="#10-VS-Code使用Emmet" class="headerlink" title="10 VS Code使用Emmet"></a>10 VS Code使用Emmet</h2><blockquote>
+<p>Emmet类似于CSS选择器的语法来描述元素在生成的树和元素属性中的位置。</p>
+<p>Tab或Enter键触发</p>
+</blockquote>
+<h3 id="10-1-元素"><a href="#10-1-元素" class="headerlink" title="10.1 元素"></a>10.1 元素</h3><ul>
+<li>可以直接使用元素的名字来快速生成Html标签</li>
+<li>可以编写任何单词并将其转换为标签</li>
+</ul>
+<h3 id="10-2-嵌套运算符"><a href="#10-2-嵌套运算符" class="headerlink" title="10.2 嵌套运算符"></a>10.2 嵌套运算符</h3><blockquote>
+<p>嵌套运算符用于在生成的树中定位缩写的元素</p>
+</blockquote>
+<ul>
+<li><code>&gt;</code>：子元素<ul>
+<li>可以使用<code>&gt;</code>运算符将元素嵌套在彼此内</li>
+</ul>
+</li>
+<li><code>+</code>：兄弟元素<ul>
+<li>可以使用<code>+</code>运算符将元素放在彼此的附近，在同一级别上</li>
+</ul>
+</li>
+<li><code>^</code>：向上<ul>
+<li>使用<code>^</code>运算符，可以爬到树的上一个级别</li>
+</ul>
+</li>
+<li><code>*</code>：乘法<ul>
+<li>使用<code>*</code>运算符，可以定义元素应该输出的次数</li>
+</ul>
+</li>
+<li><code>（）</code>：分组<ul>
+<li>使用<code>()</code>对复杂缩写中的子树进行分组</li>
+</ul>
+</li>
+<li><code>[]</code>：定义属性<ul>
+<li>以<code>[id=ab][name=abel]</code>的格式定义属性值</li>
+</ul>
+</li>
+<li><code>{}</code>：定义内容<ul>
+<li>在元素标签中定义内容</li>
+<li><code>$</code>：代表累加，也可以运用在属性定义中。</li>
+</ul>
+</li>
+</ul>
+<h3 id="10-3-属性运算符"><a href="#10-3-属性运算符" class="headerlink" title="10.3 属性运算符"></a>10.3 属性运算符</h3><blockquote>
+<p>属性运算符用于修改输出元素的属性</p>
+</blockquote>
+<ul>
+<li><code>#id_name</code>：给元素添加id属性</li>
+<li><code>.class_name</code>：给元素添加class属性</li>
+</ul>
+<h3 id="10-4-CSS缩写"><a href="#10-4-CSS缩写" class="headerlink" title="10.4 CSS缩写"></a>10.4 CSS缩写</h3><blockquote>
+<p>对于CSS语法，Emmet有很多预定义的属性片段。</p>
+<p>作用于Style区域中</p>
+</blockquote>
+<p>例如：</p>
+<ul>
+<li><p><code>m-10--20</code>：<code>margin: -10px -20px;</code></p>
+</li>
+<li><p><code>p20</code>：<code>padding: 20px;</code></p>
+</li>
+<li><code>h20</code>：<code>height: 20px;</code></li>
+<li>……..</li>
+</ul>
+<h2 id="11-Vscode开发JavaScript"><a href="#11-Vscode开发JavaScript" class="headerlink" title="11 Vscode开发JavaScript"></a>11 Vscode开发JavaScript</h2><h3 id="11-1-智能跟踪"><a href="#11-1-智能跟踪" class="headerlink" title="11.1 智能跟踪"></a>11.1 智能跟踪</h3><ul>
+<li>常见结构<ul>
+<li>for</li>
+<li>while</li>
+<li>do while</li>
+<li>if else</li>
+<li>try/catch</li>
+<li>…..</li>
+</ul>
+</li>
+<li>代码提示</li>
+<li>自动导入</li>
+</ul>
+<h3 id="11-2-文本注释"><a href="#11-2-文本注释" class="headerlink" title="11.2 文本注释"></a>11.2 文本注释</h3><ul>
+<li><code>Ctrl+/</code>：注释 </li>
+<li><code>Shift+Alt+A</code>：块注释</li>
+</ul>
+<h3 id="11-3-代码重构"><a href="#11-3-代码重构" class="headerlink" title="11.3 代码重构"></a>11.3 代码重构</h3><ul>
+<li>提取函数</li>
+<li>提取变量</li>
+</ul>
+<h2 id="12-VS-Code-创建markdown格式文件"><a href="#12-VS-Code-创建markdown格式文件" class="headerlink" title="12 VS Code 创建markdown格式文件"></a>12 VS Code 创建markdown格式文件</h2><h3 id="12-1-markdown扩展"><a href="#12-1-markdown扩展" class="headerlink" title="12.1 markdown扩展"></a>12.1 markdown扩展</h3><ul>
+<li>Markdown All in One</li>
+<li>Markdown Shortcuts</li>
+</ul>
+<h2 id="13-VS-Code-开发TypeScript"><a href="#13-VS-Code-开发TypeScript" class="headerlink" title="13 VS Code 开发TypeScript"></a>13 VS Code 开发TypeScript</h2><blockquote>
+<p>TypeScript是JavaScript的类型超集，可以编译为纯JavaScript，它提供了类，模块和接口，可以帮助我们构建健壮的组件</p>
+</blockquote>
+<h3 id="13-1-安装TypeScript编辑器"><a href="#13-1-安装TypeScript编辑器" class="headerlink" title="13.1 安装TypeScript编辑器"></a>13.1 安装TypeScript编辑器</h3><ul>
+<li><p>命令行安装: <code>npm install -g typescript</code></p>
+</li>
+<li><p>验证</p>
+<ul>
+<li><code>tsc --version</code></li>
+<li><code>tsc --help</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="13-2-创建-ts"><a href="#13-2-创建-ts" class="headerlink" title="13.2 创建.ts"></a>13.2 创建.ts</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Startup</span> </span>&#123;</span><br><span class="line">    public <span class="keyword">static</span> main(): number &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'hello world'</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过编译，我们可以将.ts文件转换为.js文件</p>
+<ul>
+<li>编译 <code>tsc 文件名.ts</code></li>
+</ul>
+<h3 id="13-3-创建ts项目"><a href="#13-3-创建ts项目" class="headerlink" title="13.3 创建ts项目"></a>13.3 创建ts项目</h3><ul>
+<li><p>tsconfig.json配置文件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"compilerOptions"</span>: &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通过 任务编译项目</p>
+<ul>
+<li><code>Ctrl+Shift+B</code>：Run Build Task</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-扩展推荐"><a href="#1-扩展推荐" class="headerlink" title="1 扩展推荐"></a>1 扩展推荐</h2><blockquote>
+<p>按需采纳</p>
+</blockquote>
+<ul>
+<li>HTML Snippets</li>
+<li>HTML CSS Support</li>
+<li>intelliSense for CSS class names in HTML</li>
+<li>HTMLHint</li>
+<li>Beautify css/sass/scss/less</li>
+<li><p>stylelint</p>
+</li>
+<li><p>color plcker</p>
+</li>
+</ul>
+
+                
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/2020/05/07/vuex的学习与使用/" data-toggle="tooltip" data-placement="top" title="vuex的学习与使用">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                <!-- tip start -->
+                
+
+                
+                <div class="comment_notes">
+                    <p>
+                        This is copyright.
+                    </p>
+                </div>
+                
+                <!-- tip end -->
+
+                <!-- Music start-->
+                
+                
+<link rel="stylesheet" href="/css/music-player/fonts/iconfont.css">
+
+
+<link rel="stylesheet" href="/css/music-player/css/reset.css">
+
+
+<link rel="stylesheet" href="/css/music-player/css/player.css">
+
+
+<div class="music-player">
+    <audio class="music-player__audio" ></audio>
+    <div class="music-player__main">
+        <div class="music-player__blur"></div>
+        <div class="music-player__disc">
+            <div class="music-player__image">
+                <img width="100%" src="" alt="">
+            </div>
+            <div class="music-player__pointer"><img width="100%" src="/img/cd_tou.png" alt=""></div>
+        </div>
+        <div class="music-player__controls">
+            <div class="music__info">
+                <h3 class="music__info--title">...</h3>
+                <p class="music__info--singer">...</p>
+            </div>
+            <div class="player-control">
+                <div class="player-control__content">
+                    <div class="player-control__btns">
+                        <div class="player-control__btn player-control__btn--prev"><i class="iconfont icon-prev"></i></div>
+                        <div class="player-control__btn player-control__btn--play"><i class="iconfont icon-play"></i></div>
+                        <div class="player-control__btn player-control__btn--next"><i class="iconfont icon-next"></i></div>
+                        <div class="player-control__btn player-control__btn--mode"><i class="iconfont icon-loop"></i></div>
+                    </div>
+                    <div class="player-control__volume">
+                        <div class="control__volume--icon player-control__btn"><i class="iconfont icon-volume"></i></div>
+                        <div class="control__volume--progress player_progress"></div>
+                    </div>
+                </div>
+                <div class="player-control__content">
+                    <div class="player__song--progress player_progress"></div>
+                    <div class="player__song--timeProgess nowTime">00:00</div>
+                    <div class="player__song--timeProgess totalTime">00:00</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/js/music-player/utill.js"></script>
+
+
+<script src="/js/music-player/jquery.min.js"></script>
+
+
+<script src="/js/music-player/player.js"></script>
+
+
+                
+                <!-- Music end -->
+
+                <!-- Sharing -->
+                
+                <!-- Sharing -->
+
+                <!-- gitment start -->
+                
+                <!-- gitment end -->
+
+                <!-- 来必力City版安装代码 -->
+                
+                <!-- City版安装代码已完成 -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      
+        <aside id="sidebar">
+          <div id="toc" class="toc-article">
+          <strong class="toc-title">Contents</strong>
+          
+            
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#1-Command-Palette命令面板"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">1 Command Palette命令面板</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#2-编辑器视图的控制"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">2 编辑器视图的控制</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#3-VS-Code基本代码编写"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">3  VS Code基本代码编写</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#3-1-快捷键"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">3.1 快捷键</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#3-2-选择多行"><span class="toc-nav-number">3.2.</span> <span class="toc-nav-text">3.2 选择多行</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#4-VS-Code扩展市场"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">4 VS Code扩展市场</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#5-VS-Code-代码补全-IntelliSense"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">5 VS Code 代码补全(IntelliSense)</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#6-VS-Code-代码导航"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">6 VS Code 代码导航</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#6-1-快速文件导航"><span class="toc-nav-number">6.1.</span> <span class="toc-nav-text">6.1 快速文件导航</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#6-2-跳转到文件定义处"><span class="toc-nav-number">6.2.</span> <span class="toc-nav-text">6.2 跳转到文件定义处</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#6-3-Peek"><span class="toc-nav-number">6.3.</span> <span class="toc-nav-text">6.3 Peek</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#6-4-括号匹配"><span class="toc-nav-number">6.4.</span> <span class="toc-nav-text">6.4 括号匹配</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#7-VS-Code-代码重构"><span class="toc-nav-number">7.</span> <span class="toc-nav-text">7 VS Code 代码重构</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#7-1-重构代码"><span class="toc-nav-number">7.1.</span> <span class="toc-nav-text">7.1 重构代码</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#7-2-重命名symbol"><span class="toc-nav-number">7.2.</span> <span class="toc-nav-text">7.2 重命名symbol</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#8-VS-Code-代码调试"><span class="toc-nav-number">8.</span> <span class="toc-nav-text">8 VS Code 代码调试</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#8-1-调试扩展"><span class="toc-nav-number">8.1.</span> <span class="toc-nav-text">8.1 调试扩展</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#8-2-添加断点"><span class="toc-nav-number">8.2.</span> <span class="toc-nav-text">8.2 添加断点</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#8-3-调试快捷键"><span class="toc-nav-number">8.3.</span> <span class="toc-nav-text">8.3 调试快捷键</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#9-VS-Code-集成终端"><span class="toc-nav-number">9.</span> <span class="toc-nav-text">9 VS Code 集成终端</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#9-1-打开终端视图"><span class="toc-nav-number">9.1.</span> <span class="toc-nav-text">9.1 打开终端视图</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#9-2-管理多个终端"><span class="toc-nav-number">9.2.</span> <span class="toc-nav-text">9.2 管理多个终端</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#9-3-配置终端"><span class="toc-nav-number">9.3.</span> <span class="toc-nav-text">9.3 配置终端</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#10-VS-Code使用Emmet"><span class="toc-nav-number">10.</span> <span class="toc-nav-text">10 VS Code使用Emmet</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#10-1-元素"><span class="toc-nav-number">10.1.</span> <span class="toc-nav-text">10.1 元素</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#10-2-嵌套运算符"><span class="toc-nav-number">10.2.</span> <span class="toc-nav-text">10.2 嵌套运算符</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#10-3-属性运算符"><span class="toc-nav-number">10.3.</span> <span class="toc-nav-text">10.3 属性运算符</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#10-4-CSS缩写"><span class="toc-nav-number">10.4.</span> <span class="toc-nav-text">10.4 CSS缩写</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#11-Vscode开发JavaScript"><span class="toc-nav-number">11.</span> <span class="toc-nav-text">11 Vscode开发JavaScript</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#11-1-智能跟踪"><span class="toc-nav-number">11.1.</span> <span class="toc-nav-text">11.1 智能跟踪</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#11-2-文本注释"><span class="toc-nav-number">11.2.</span> <span class="toc-nav-text">11.2 文本注释</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#11-3-代码重构"><span class="toc-nav-number">11.3.</span> <span class="toc-nav-text">11.3 代码重构</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#12-VS-Code-创建markdown格式文件"><span class="toc-nav-number">12.</span> <span class="toc-nav-text">12 VS Code 创建markdown格式文件</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#12-1-markdown扩展"><span class="toc-nav-number">12.1.</span> <span class="toc-nav-text">12.1 markdown扩展</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#13-VS-Code-开发TypeScript"><span class="toc-nav-number">13.</span> <span class="toc-nav-text">13 VS Code 开发TypeScript</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#13-1-安装TypeScript编辑器"><span class="toc-nav-number">13.1.</span> <span class="toc-nav-text">13.1 安装TypeScript编辑器</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#13-2-创建-ts"><span class="toc-nav-number">13.2.</span> <span class="toc-nav-text">13.2 创建.ts</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#13-3-创建ts项目"><span class="toc-nav-number">13.3.</span> <span class="toc-nav-text">13.3 创建ts项目</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#1-扩展推荐"><span class="toc-nav-number">14.</span> <span class="toc-nav-text">1 扩展推荐</span></a></li></ol>
+            
+          
+          </div>
+        </aside>
+      
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#开发工具的使用" title="开发工具的使用">开发工具的使用</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+
+
+<style  type="text/css">
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Abell99">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+<!-- 
+                 -->
+<!-- 
+                 -->
+
+                <!--  -->
+
+                <!--  -->
+
+                <!--  -->
+
+                <!--  -->
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Abel 2020 
+                    <br>
+                    Powered by 
+                    <a href="https://github.com/dusign/hexo-theme-snail" target="_blank" rel="noopener">
+                        <i>hexo-theme-snail</i>
+                    </a> | 
+                    <iframe name="star" style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0"
+                        width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=dusign&repo=hexo-theme-snail&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- Search -->
+
+<script src="/js/search.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://abel.run/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Search -->
+
+    <script type="text/javascript">      
+        var search_path = "search.xml";
+        if (search_path.length == 0) {
+            search_path = "search.xml";
+        }
+    var path = "/" + search_path;
+    searchFunc(path, 'local-search-input', 'local-search-result');
+    </script>
+
+
+<!-- busuanzi -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+
+    
+        <!-- background effects line -->
+        
+
+        
+            <script type="text/javascript" src="/js/mouse-click.js" content='[&quot;🌱&quot;,&quot;just do it&quot;,&quot;🍀&quot;]' color='[&quot;rgb(121,93,179)&quot; ,&quot;rgb(76,180,231)&quot; ,&quot;rgb(184,90,154)&quot;]'></script>
+        
+
+        <!-- background effects end -->
+    
+
+    <!--<script size="50" alpha='0.3' zIndex="-999" src="/js/ribbonStatic.js"></script>-->
+    
+        <script src="/js/ribbonDynamic.js"></script>
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+</body>
+
+</html>
