@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="baidu-site-verification" content="093lY4ziMu" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="description" content="Abel的个人博客">
+    <meta name="keyword"  content="前端, 学习笔记, 生活">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!--<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>-->
+    <title>
+        
+          js异步处理学习笔记 - Run!Abel!
+        
+    </title>
+
+    <link rel="canonical" href="https://abel.run/2020/05/23/js异步处理学习笔记/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS --> 
+    
+        
+<link rel="stylesheet" href="/css/dusign-light.css">
+
+        
+<link rel="stylesheet" href="/css/dusign-common-light.css">
+
+        
+<link rel="stylesheet" href="/css/font-awesome.css">
+
+        
+<link rel="stylesheet" href="/css/toc.css">
+
+        <!-- background effects end -->
+    
+    
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    
+<link rel="stylesheet" href="/css/widget.css">
+
+
+    
+<link rel="stylesheet" href="/css/rocket.css">
+
+
+    
+<link rel="stylesheet" href="/css/signature.css">
+
+
+    
+<link rel="stylesheet" href="/css/fonts.googleapis.css">
+
+
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <!-- photography -->
+    
+<link rel="stylesheet" href="/css/photography.css">
+
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- background effects start -->
+    
+    <!-- background effects end -->
+
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            
+                background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../../../../img/default.jpg')
+                /*post*/
+            
+        
+    }
+    
+    #signature{
+        background-image: url('/img/signature/dusign.png');
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#JS" title="JS">JS</a>
+                            
+                        </div>
+                        <h1>js异步处理学习笔记</h1>
+                        <h2 class="subheading">深度剖析异步处理实现逻辑</h2>
+                        <span class="meta">
+                            Posted by Abel on
+                            2020-05-23
+                        </span>
+
+                        
+                            <div class="blank_box"></div>
+                            <span class="meta">
+                                Words <span class="post-count">5.1k</span> and
+                                Reading Time <span class="post-count">20</span> Minutes
+                            </span>
+                            <div class="blank_box"></div>
+                            <!-- 不蒜子统计 start -->
+                            <span class="meta">
+                                Viewed <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Times
+                            </span>
+                            <!-- 不蒜子统计 end -->
+                        
+
+                    </div>
+                
+
+                </div>
+            </div>
+        </div>      
+    </div>
+
+    
+    <div class="waveWrapper">
+        <div class="wave wave_before" style="background-image: url('/img/wave-light.png')"></div>
+        <div class="wave wave_after" style="background-image: url('/img/wave-light.png')"></div>
+    </div>
+    
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Run！Abel ！</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">首页</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">月刊</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">关于我</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/categories/">分类</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/photography/">摄影</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">标签</a>
+                        </li>
+                        
+                    
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="异步编程是什么？"><a href="#异步编程是什么？" class="headerlink" title="异步编程是什么？"></a>异步编程是什么？</h1><blockquote>
+<p>单线程JavaScript异步方案</p>
+<ul>
+<li><p>总所周知JavaScript是单线程的</p>
+</li>
+<li><p>采用单线程模式工作的原因</p>
+<blockquote>
+<p>最早是运行在浏览器端的脚本语言，目的就是用来实现页面中的动态交互，而实现页面交互的核心就是DOM操作，而这就决定了它必须使用单线程模型，否则就会出现很复杂的线程同步问题(举个🌰：多线程同时操作一个dom元素，一个删除一个修改，浏览器就无法判断应该以哪一个线程的结果为准)</p>
+</blockquote>
+</li>
+<li><p>单线程的表现形式</p>
+<ul>
+<li>JS执行环境中负责执行代码的线程只有一个</li>
+<li>先来后到排队，遇到一个超级耗时的任务，将严重影响后面的任务进程，出现假死的情况（异步应运而生）</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h1 id="内容概要"><a href="#内容概要" class="headerlink" title="内容概要"></a>内容概要</h1><ul>
+<li>同步模式与异步模式</li>
+<li>事件循环与消息队列</li>
+<li>异步编程的几种方式</li>
+<li>Promise异步方案、宏任务/微任务队列</li>
+<li>Generator异步方案、Async/Await语法糖</li>
+</ul>
+<h1 id="1·同步模式与异步模式"><a href="#1·同步模式与异步模式" class="headerlink" title="1·同步模式与异步模式"></a>1·同步模式与异步模式</h1><blockquote>
+<p>JavaScript将任务的执行模式分成了两种</p>
+</blockquote>
+<ul>
+<li>同步模式(Synchronous)</li>
+<li>异步模式(Asynchronous)</li>
+</ul>
+<blockquote>
+<p>根据运行环境提供的API是以同步还是异步模式的方式工作来区分</p>
+</blockquote>
+<h2 id="1-1·同步模式"><a href="#1-1·同步模式" class="headerlink" title="1.1·同步模式"></a>1.1·同步模式</h2><blockquote>
+<p>​    代码中的任务依次执行，后面的任务必须等待前面的任务执行结束，才能开始执行，代码中的大多数任务采取的是同步执行模式</p>
+</blockquote>
+<h2 id="1-2·异步模式"><a href="#1-2·异步模式" class="headerlink" title="1.2·异步模式"></a>1.2·异步模式</h2><blockquote>
+<p>​    异步模式下，不会去等待一个任务的结束才开始下一个任务。对于耗时的任务，在开启过后就会立即往后执行下一个任务，后续逻辑一般会通过回调函数的方式去定义(耗时任务在内部执行完成之后就会执行回调)。</p>
+</blockquote>
+<ul>
+<li><p>如果没有异步执行模式，单线程的JavaScript就无法同时处理大量的耗时任务</p>
+</li>
+<li><p>异步执行会遇到的问题</p>
+<ul>
+<li><p>代码的执行顺序混乱</p>
+<blockquote>
+<p>众多面试题的设计灵感来源。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>JavaScript是单线程的，但是浏览器并非是单线程的，浏览器内部的API会有单独的线程去执行这些耗时的操作</p>
+</li>
+</ul>
+<blockquote>
+<p>逻辑过程中的名称:</p>
+<p>​    Call stack: 执行栈，调用栈</p>
+<p>​    Web APIs:用于罗列异步任务</p>
+<p>​    Queue:消息队列，给异步任务排序</p>
+<p>​    Event loop:事件循环机制，当调用栈为空的时候，依次将消息队列中的函数任务调往执行栈</p>
+<p>逻辑总结:</p>
+<p>​    在代码执行的过程中，执行栈先进行压栈（控制执行栈不为空，暂不调用消息队列），在遇到同步任务的时候放到执行栈中并执行，在遇到异步任务的时候，先罗列到Web APIs中。待同步任务全部执行完毕之后，撤销压栈，将罗列的异步任务按时间先后在消息队列中排列，通过事件循环机制依次调到执行栈并执行，遇到新的异步任务的时候，可以根据时间在消息队列中进行加塞。</p>
+</blockquote>
+<p><img src="https://pics.images.ac.cn/image/5ec40ff668b7e.html" alt="逻辑图解"></p>
+<h1 id="2·回调函数"><a href="#2·回调函数" class="headerlink" title="2·回调函数"></a>2·回调函数</h1><blockquote>
+<p>回调函数：</p>
+<p>​    所有异步编程方案(为js异步而生的语法)的根基</p>
+<p>​    调用者定义回调函数，执行栈执行这个函数，其实就是调用者告诉执行者异步任务结束之后应该做什么</p>
+</blockquote>
+<ul>
+<li><p>最基本的回调方式</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">    最早的回调函数</span></span><br><span class="line"><span class="comment">        通过传递回调参数实现</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span> (<span class="params">callback</span>) </span>&#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        callback()</span><br><span class="line">    &#125;, <span class="number">3000</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 调用函数，并传递回调参数</span></span><br><span class="line">foo(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'这就是一个回调函数，调用者定义这个函数，执行栈执行这个函数，其实就是调用者告诉执行者异步任务结束之后应该做什么'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="3·Promise异步方案"><a href="#3·Promise异步方案" class="headerlink" title="3·Promise异步方案"></a>3·Promise异步方案</h1><blockquote>
+<p>Promise(承诺)：</p>
+<p>​    一种更优的异步编程统一方案</p>
+<p>解决的痛点：</p>
+<p>​    传统的回调方式无法完成复杂的回调逻辑，会造成回调地狱的情况</p>
+<p>CommonJS社区首次提出了Promise的规范用于解决回调地狱，在ES2015中被标准化，成为语言规范</p>
+<p>概念：</p>
+<p>​    君子一诺千金，Promise的回调拥有两种，失败与成功，定义了成功如何，失败又如何的行事原则。</p>
+</blockquote>
+<h2 id="3-1·Promise的基本用法"><a href="#3-1·Promise的基本用法" class="headerlink" title="3.1·Promise的基本用法"></a>3.1·Promise的基本用法</h2><blockquote>
+<p>Promise代码层面的基本使用</p>
+<p>Promise也可以说是ES2015所提供的一个<strong>全局类型</strong>，可以通过它来实例出新的承诺</p>
+</blockquote>
+<ul>
+<li><p>Promise的注意点：</p>
+<ul>
+<li>无论成败，都应有回应</li>
+<li>无论成败，都不可逆</li>
+</ul>
+</li>
+<li><p>格式示例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">    Promise的基本使用</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="comment">// 这个类型的函数和以往的有些与不同，它需要接收一个函数(兑现承诺的逻辑)作为参数</span></span><br><span class="line"><span class="keyword">const</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 这里用来'兑现'承诺</span></span><br><span class="line"></span><br><span class="line">    resolve(<span class="string">'条件达成了'</span>) <span class="comment">// 承诺达成 输出结果：resolved 条件达成了</span></span><br><span class="line"></span><br><span class="line">    reject(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'promise rejected'</span>)) <span class="comment">// 承诺失败 输出结果：rejected Error: promise rejected</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 实例化处理啊的承诺，可以通过then来获取回应。</span></span><br><span class="line">promise.then(<span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'resolved'</span>, value) <span class="comment">// 返回成功的回应</span></span><br><span class="line">&#125;, <span class="function"><span class="keyword">function</span> (<span class="params">error</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'rejected'</span>, error) <span class="comment">// 返回失败的回应</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 承诺的注意点：</span></span><br><span class="line"><span class="comment">//     无论失败与成功，都有其对应的回应</span></span><br><span class="line"><span class="comment">//     无论成功或者失败，结果不可逆</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="3-2·Promise的使用案例"><a href="#3-2·Promise的使用案例" class="headerlink" title="3.2·Promise的使用案例"></a>3.2·Promise的使用案例</h2><blockquote>
+<p>Promise 方式的 AJAX</p>
+</blockquote>
+<ul>
+<li><p>格式示例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">    Promise 方式的 AJAX</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ajax</span> (<span class="params">url</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest()</span><br><span class="line">        xhr.open(<span class="string">'GET'</span>, url)</span><br><span class="line">        xhr.responseType = <span class="string">'json'</span></span><br><span class="line">        xhr.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">this</span>.status === <span class="number">200</span>) &#123;</span><br><span class="line">                resolve(<span class="keyword">this</span>.response) <span class="comment">// 承诺成功达成之后，返回得到的数据</span></span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                reject(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="keyword">this</span>.statusText)) <span class="comment">// 承诺无法达成之后，返回new出来的错误信息</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        xhr.send()</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 异步任务</span></span><br><span class="line">ajax(<span class="string">'./api/foo.json'</span>)</span><br><span class="line">    .then( <span class="comment">// 默认函数第一个成功，第二个失败</span></span><br><span class="line">        <span class="comment">// 承诺成功达成,对于返回的成功信息的处理</span></span><br><span class="line">        <span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(res) <span class="comment">// 成功之后，朴实无华的打印出来获取到的数据 (2) [&#123;…&#125;, &#123;…&#125;]</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="comment">// 承诺失信了，对于失败的返回信息的处理</span></span><br><span class="line">        <span class="function"><span class="keyword">function</span> (<span class="params">error</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(error) <span class="comment">// 返回失败信息</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    )</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="3-3·Promise链式调用"><a href="#3-3·Promise链式调用" class="headerlink" title="3.3·Promise链式调用"></a>3.3·Promise链式调用</h2><blockquote>
+<p>不同以往的链式调用：</p>
+<p>​    通过then的处理，返回处理过后的promise，从而解决回调地狱问题</p>
+</blockquote>
+<ul>
+<li><p>链式调用</p>
+<ul>
+<li>Promise对象的then方法会返回一个全新的Promise对象</li>
+<li>后面的then方法就是在为上一个then返回的peomise注册回调</li>
+<li>then的return返回内容<ul>
+<li>无返回值，则操作的就是上一个处理过后的</li>
+<li>类型依旧为<code>promise</code>,则下一个then处理的就是返回的这个,并且会排队等待返回的promise结束之后再处理</li>
+<li>并非<code>promise</code>类型，则是下一个then的参数</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>格式示例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">    Promise链式调用</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 这个类型的函数和以往的有些与不同，它需要接收一个函数(兑现承诺的逻辑)作为参数</span></span><br><span class="line"><span class="keyword">const</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 这里用来'兑现'承诺</span></span><br><span class="line"></span><br><span class="line">    resolve(<span class="string">'条件达成了'</span>) <span class="comment">// 承诺达成 输出结果：resolved 条件达成了</span></span><br><span class="line"></span><br><span class="line">    reject(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'promise rejected'</span>)) <span class="comment">// 承诺失败 输出结果：rejected Error: promise rejected</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 实例化处理啊的承诺，可以通过then来获取回应。</span></span><br><span class="line">promise.then(<span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'resolved'</span>, value) <span class="comment">// 返回成功的回应</span></span><br><span class="line">&#125;, <span class="function"><span class="keyword">function</span> (<span class="params">error</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'rejected'</span>, error) <span class="comment">// 返回失败的回应</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取通过then处理一次过后的返回值</span></span><br><span class="line"><span class="keyword">var</span> promise2 = promise.then(<span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'resolved'</span>, value) <span class="comment">// 返回成功的回应</span></span><br><span class="line">&#125;, <span class="function"><span class="keyword">function</span> (<span class="params">error</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'rejected'</span>, error) <span class="comment">// 返回失败的回应</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">    在以往我们使用链式调用，是因为使用的方法没有改变this执行，就是说经过某个方法，返回的依旧是原本的对象本身</span></span><br><span class="line"><span class="comment">    但是，</span></span><br><span class="line"><span class="comment">        promise中，通过then处理的promise并不是原来的promise，而这也正是promise链式调用的关键所在</span></span><br><span class="line"><span class="comment">        通过then的处理，返回处理过后的promise，从而解决回调地狱问题</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="built_in">console</span>.log(promise === promise2) <span class="comment">// 返回结果：false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 关于then的返回值</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'------------------------------------------------'</span>)</span><br><span class="line">promise</span><br><span class="line">    .then(</span><br><span class="line">        <span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">            <span class="comment">// 无返回值</span></span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'无返回值'</span>)</span><br><span class="line">            <span class="built_in">console</span>.log(value)</span><br><span class="line">        &#125;</span><br><span class="line">    )</span><br><span class="line">    .then(</span><br><span class="line">        <span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'返回一个promise类型的数据'</span>)</span><br><span class="line">            <span class="keyword">return</span> promise</span><br><span class="line">        &#125;</span><br><span class="line">    )</span><br><span class="line">    .then(</span><br><span class="line">        <span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'在这次回调中返回一个非promise类型的数据'</span>)</span><br><span class="line">            <span class="keyword">return</span> value + <span class="string">'并在此返回一个非promise类型的数据'</span></span><br><span class="line">        &#125;</span><br><span class="line">    )</span><br><span class="line">    .then(</span><br><span class="line">        <span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'接收一个非promise类型的数据: '</span> + value)</span><br><span class="line">        &#125;</span><br><span class="line">    )</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="3-4·Promise异常处理"><a href="#3-4·Promise异常处理" class="headerlink" title="3.4·Promise异常处理"></a>3.4·Promise异常处理</h2><blockquote>
+<p>处理异常的三种方式</p>
+</blockquote>
+<ul>
+<li><p>异常的回调函数</p>
+<ul>
+<li>then的第二个函数</li>
+<li>紧跟在每一个then后面的catch</li>
+<li>全局对象的unhandledrejection统一处理（不推荐使用）<ul>
+<li>推荐在代码中明确的捕获每一个可能的异常</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>前两种回调方法的不同点</p>
+<ul>
+<li>then的第二个函数只捕获上一个promise的错误</li>
+<li>catch捕获前面的所有promise的错误</li>
+</ul>
+</li>
+<li><p>格式示例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">    Promise异常处理</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ajax</span> (<span class="params">url</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest()</span><br><span class="line">        xhr.open(<span class="string">'GET'</span>, url)</span><br><span class="line">        xhr.responseType = <span class="string">'json'</span></span><br><span class="line">        xhr.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">this</span>.status === <span class="number">200</span>) &#123;</span><br><span class="line">                resolve(<span class="keyword">this</span>.response) <span class="comment">// 承诺成功达成之后，返回得到的数据</span></span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                reject(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="keyword">this</span>.statusText)) <span class="comment">// 承诺无法达成之后，返回new出来的错误信息</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        xhr.send()</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 异步任务</span></span><br><span class="line">ajax(<span class="string">'./api/foo.json'</span>)</span><br><span class="line">    .then(</span><br><span class="line">        <span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(res)</span><br><span class="line">            <span class="comment">// 返回一个错误的promise</span></span><br><span class="line">            <span class="keyword">return</span> ajax(<span class="string">'./api/abel.json'</span>)</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="function"><span class="keyword">function</span> (<span class="params">error</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(error + <span class="string">' 离太近了，不好意思抓'</span>) <span class="comment">// 并没有捕获上面的异常</span></span><br><span class="line">        &#125;</span><br><span class="line">    )</span><br><span class="line"><span class="comment">// catch处理错误</span></span><br><span class="line">ajax(<span class="string">'./api/foo.json'</span>)</span><br><span class="line">    .then(</span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">err</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(res)</span><br><span class="line">            <span class="comment">// 返回一个错误的promise</span></span><br><span class="line">            <span class="keyword">return</span> ajax(<span class="string">'./api/abel.json'</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    )</span><br><span class="line">    <span class="comment">// 本质就是紧跟着的then中的promise的回调</span></span><br><span class="line">    .catch(</span><br><span class="line">        <span class="function"><span class="keyword">function</span> (<span class="params">error</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(error + <span class="string">' 小样，哪里跑'</span>) <span class="comment">// 结果输出：Error: Not Found 小样，哪里跑</span></span><br><span class="line">        &#125;</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">    全局对象错误统一处理</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="comment">// Web中</span></span><br><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'unhandledrejection'</span>, event =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; reason, promise &#125; = event</span><br><span class="line">    <span class="built_in">console</span>.log(reason, promise)</span><br><span class="line">    <span class="comment">// reason =&gt; Promise</span></span><br><span class="line">    <span class="comment">// promise =&gt; 出现异常的Promise对象</span></span><br><span class="line">    event.preventDefault()</span><br><span class="line">&#125;, <span class="literal">false</span>)</span><br><span class="line"><span class="comment">// node中</span></span><br><span class="line">process.on(<span class="string">'unhandledRejection'</span>, (reason, promise) =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(reason, promise)</span><br><span class="line">    <span class="comment">// reason =&gt; Promise</span></span><br><span class="line">    <span class="comment">// promise =&gt; 出现异常的Promise对象</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="3-5·Promise静态方法"><a href="#3-5·Promise静态方法" class="headerlink" title="3.5·Promise静态方法"></a>3.5·Promise静态方法</h2><blockquote>
+<p>Promise相关的方法</p>
+</blockquote>
+<ul>
+<li><p>Promise.resolve()</p>
+<ul>
+<li>将任意参数变为promise</li>
+<li>根据传入类型的不同，有不同的效果与意义<ul>
+<li>传入字符串等类型的，属于作为参数，传给了自己的回调函数</li>
+<li>传入一个promise,等于promise本身</li>
+<li>传入一个拥有then方法的对象，第三方promise转原生promise的解决方案</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Promise.reject()</p>
+<ul>
+<li>快速创建一个承诺未达成的原因</li>
+</ul>
+</li>
+<li><p>格式示例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">    Promise静态方法  </span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// -----------------------------------------------------</span></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">    Promise.resolve()</span></span><br><span class="line"><span class="comment">        将任意的参数变为promise</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="comment">// 传入字符串等类型的，属于作为参数，传给了自己的回调函数</span></span><br><span class="line"><span class="keyword">const</span> foo = <span class="built_in">Promise</span>.resolve(<span class="string">'foo'</span>)</span><br><span class="line">foo</span><br><span class="line">    .then(</span><br><span class="line">        <span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(value) <span class="comment">// 结果输出：foo</span></span><br><span class="line">        &#125;</span><br><span class="line">    )</span><br><span class="line"><span class="comment">// 传入一个promise,等于promise本身</span></span><br><span class="line"><span class="keyword">const</span> foo1 = <span class="built_in">Promise</span>.resolve(foo)</span><br><span class="line">foo1</span><br><span class="line">    .then(</span><br><span class="line">        <span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(value) <span class="comment">// 结果输出：foo</span></span><br><span class="line">        &#125;</span><br><span class="line">    )</span><br><span class="line"><span class="comment">// 传入一个拥有then方法的对象，第三方promise转原生promise的解决方案</span></span><br><span class="line"><span class="built_in">Promise</span>.resolve(&#123;</span><br><span class="line">    then: <span class="function"><span class="keyword">function</span> (<span class="params">onFulfilled, onRejected</span>) </span>&#123;</span><br><span class="line">        onFulfilled(<span class="string">'foo'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">    .then(<span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(value) <span class="comment">// 结果输出：foo</span></span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// ---------------------------------------------------------</span></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">    Promise.reject()</span></span><br><span class="line"><span class="comment">        快速创建一个失败的原因</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="built_in">Promise</span>.reject(<span class="string">'这就是我失败理由'</span>)</span><br><span class="line">    .catch(<span class="function"><span class="keyword">function</span> (<span class="params">error</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(error) <span class="comment">// 结果输出：这就是我失败理由</span></span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="3-6·Promise并行执行"><a href="#3-6·Promise并行执行" class="headerlink" title="3.6·Promise并行执行"></a>3.6·Promise并行执行</h2><blockquote>
+<p>齐头并进的Promise</p>
+</blockquote>
+<ul>
+<li><p>Promise.all()</p>
+<ul>
+<li>我全都要</li>
+</ul>
+</li>
+<li><p>Promise.race()</p>
+<ul>
+<li>只要一个就好</li>
+</ul>
+</li>
+<li><p>格式示例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">    Promise并行执行</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ajax</span> (<span class="params">url</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest()</span><br><span class="line">        xhr.open(<span class="string">'GET'</span>, url)</span><br><span class="line">        xhr.responseType = <span class="string">'json'</span></span><br><span class="line">        xhr.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">this</span>.status === <span class="number">200</span>) &#123;</span><br><span class="line">                resolve(<span class="keyword">this</span>.response) <span class="comment">// 承诺成功达成之后，返回得到的数据</span></span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                reject(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="keyword">this</span>.statusText)) <span class="comment">// 承诺无法达成之后，返回new出来的错误信息</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        xhr.send()</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// -------------------------------------------------------</span></span><br><span class="line"><span class="comment">/* 如何判断都结束了</span></span><br><span class="line"><span class="comment">    之前：计数器</span></span><br><span class="line"><span class="comment">    现在：all</span></span><br><span class="line"><span class="comment">    */</span> </span><br><span class="line"></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">    Promise.all()</span></span><br><span class="line"><span class="comment">        将多个promise合并，一荣俱荣一损俱损</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">var</span> promise = <span class="built_in">Promise</span>.all(</span><br><span class="line">    [</span><br><span class="line">        ajax(<span class="string">'./api/foo.json'</span>),</span><br><span class="line">        ajax(<span class="string">'./api/foo.json'</span>)        </span><br><span class="line">    ]</span><br><span class="line">)</span><br><span class="line">promise</span><br><span class="line">    .then(<span class="function"><span class="keyword">function</span> (<span class="params">values</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(values) <span class="comment">// 结果输出：(2) [Array(2), Array(2)] // 返回all里面promise返回的内容，组成的数组</span></span><br><span class="line">    &#125;)</span><br><span class="line">    .catch(<span class="function"><span class="keyword">function</span> (<span class="params">error</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(error) <span class="comment">// 但凡有一个出错，就会报错</span></span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// ------------------------------------------------------------</span></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">    Promise.race()</span></span><br><span class="line"><span class="comment">        弱水三千只取一瓢，只要有完成的就不再等待其他的异步任务了</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">const</span> request = ajax(<span class="string">'./api/posts.json'</span>)</span><br><span class="line"><span class="keyword">const</span> timeout = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> reject(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'timeout'</span>)), <span class="number">500</span>)</span><br><span class="line">&#125;) </span><br><span class="line"></span><br><span class="line"><span class="built_in">Promise</span>.race([</span><br><span class="line">    request,</span><br><span class="line">    timeout</span><br><span class="line">])</span><br><span class="line">    .then(<span class="function"><span class="params">value</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(value) <span class="comment">// 输出结果：返回最早完成的异步任务，可以在开发者工具中更改网速来体验</span></span><br><span class="line">    &#125;)</span><br><span class="line">    .catch(<span class="function"><span class="params">error</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(error)</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// -------------------------------------------------------</span></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">    混合使用</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">ajax.apply(<span class="string">'./api/urls/json'</span>)</span><br><span class="line">    .then(<span class="function"><span class="params">value</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> urls = <span class="built_in">Object</span>.values(value)</span><br><span class="line">        <span class="keyword">const</span> tasks = urls.map(<span class="function"><span class="params">url</span> =&gt;</span> ajax(url))</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Promise</span>.all(tasks)</span><br><span class="line">    &#125;)</span><br><span class="line">    .then(<span class="function"><span class="params">valuse</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(values)</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="3-7·Promise执行时序"><a href="#3-7·Promise执行时序" class="headerlink" title="3.7·Promise执行时序"></a>3.7·Promise执行时序</h2><blockquote>
+<p>宏任务 &amp; 微任务</p>
+</blockquote>
+<ul>
+<li><p>宏任务</p>
+<ul>
+<li>跟在宏任务后面，如果有格外的需求，可以跟着一起办理，无需重新排队，提高整体的响应能力</li>
+<li>Promise &amp; MutationObserver &amp; process.nextTick(node环境中)</li>
+</ul>
+</li>
+<li><p>微任务</p>
+<ul>
+<li>目前绝大多数异步调用都是作为宏任务执行，需要重新排队</li>
+</ul>
+</li>
+<li><p>格式示例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">    Promise执行时序</span></span><br><span class="line"><span class="comment">        宏任务&amp;微任务</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">    微任务: 跟在宏任务后面，如果有格外的需求，可以跟着一起办理，无需重新排队，提高整体的响应能力</span></span><br><span class="line"><span class="comment">        Promise &amp; MutationObserver &amp; process.nextTick(node环境中)</span></span><br><span class="line"><span class="comment">    宏任务：目前绝大多数异步调用都是作为宏任务执行，需要重新排队</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'开始执行同步任务'</span>)</span><br><span class="line"></span><br><span class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'这是一个定时器异步任务'</span>)</span><br><span class="line">&#125;, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">Promise</span>.resolve()</span><br><span class="line">    .then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'promise中的第一个回调'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">    .then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'promise中的第二个回调'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">    .then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'promise中的第三个回调'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'同步任务结束'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 输出结果顺序</span></span><br><span class="line"><span class="comment">        开始执行同步任务</span></span><br><span class="line"><span class="comment">        同步任务结束</span></span><br><span class="line"><span class="comment">        promise中的第一个回调</span></span><br><span class="line"><span class="comment">        promise中的第二个回调</span></span><br><span class="line"><span class="comment">        promise中的第三个回调</span></span><br><span class="line"><span class="comment">        这是一个定时器异步任务</span></span><br><span class="line"><span class="comment">    疑问点：</span></span><br><span class="line"><span class="comment">        1.为什么promise比定时器任务更先执行</span></span><br><span class="line"><span class="comment">            由于promise本身可以作为微任务，因此，它拥有比定时器更优先的时序排列。</span></span><br><span class="line"><span class="comment">        2.为什么promise的回调的回调都跟着提前了</span></span><br><span class="line"><span class="comment">            答：回调队列中的任务称之为宏任务，而宏任务执行过程中临时加上的额外需求成为微任务，可以直接跟着执行，无需排队，当然也可以选择作为一个新的宏任务进入到队列中排队</span></span><br><span class="line"><span class="comment">            追问：什么异步任务能重新选择作为宏任务，什么能作为微任务跟着执行</span></span><br><span class="line"><span class="comment">            答：定时器任务会做回宏任务从新排队，而promise的回调会作为微任务跟着执行</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="3-8·Promise常见误区"><a href="#3-8·Promise常见误区" class="headerlink" title="3.8·Promise常见误区"></a>3.8·Promise常见误区</h2><blockquote>
+<p>Promise的本质也是通过回调函数，来定义异步任务结束之后所需要执行的任务</p>
+</blockquote>
+<p>注意点：</p>
+<ul>
+<li>Promise回调方法，通过 <code>then</code> 来传递</li>
+<li>Promise分为成功与失败的回调</li>
+<li>Promise无需嵌套使用,通过链式调用，来保持异步的扁平化</li>
+<li>宏任务与微任务对于执行顺序的影响</li>
+</ul>
+<h1 id="4·Generator异步方案"><a href="#4·Generator异步方案" class="headerlink" title="4·Generator异步方案"></a>4·Generator异步方案</h1><blockquote>
+<p>进一步提升异步任务的代码可读性</p>
+</blockquote>
+<h2 id="4-1·Generator-异步解决方案回顾"><a href="#4-1·Generator-异步解决方案回顾" class="headerlink" title="4.1·Generator 异步解决方案回顾"></a>4.1·Generator 异步解决方案回顾</h2><blockquote>
+<p>ES2015Generator的回顾与补充</p>
+</blockquote>
+<ul>
+<li><p>在普通函数的函数名前面加<code>*</code> ,可以把普通函数变为生成器函数</p>
+</li>
+<li><p>生成器函数的函数体，通过next()调用后才能执行</p>
+</li>
+<li><p><code>yield</code>关键词，打断点</p>
+</li>
+<li><p><code>throw()</code>用于返回错误,可以被函数体中的try…catch捕获到</p>
+</li>
+<li><p>格式示例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">    Generator 异步解决方案回顾</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> * <span class="title">foo</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'start'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> res = <span class="keyword">yield</span> <span class="string">'foo'</span></span><br><span class="line">        <span class="built_in">console</span>.log(res)</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(e)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> generator = foo()</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(generator.next()) <span class="comment">// 在生成器函数中，遇到yield会在执行完这一个yield之后暂停 // 输出结果：&#123;value: "foo", done: false&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(generator.throw(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'抛出了一个错误'</span>))) <span class="comment">// throw同样可以继续执行，不过打印出来的会是错误信息 // 输出结果：Error: 抛出了一个错误</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="4-2·体验Generator异步方案"><a href="#4-2·体验Generator异步方案" class="headerlink" title="4.2·体验Generator异步方案"></a>4.2·体验Generator异步方案</h2><blockquote>
+<p>使用Generator的特性来体验更优的异步解决方案</p>
+</blockquote>
+<ul>
+<li><p>逻辑分析</p>
+<blockquote>
+<p>Generator用于异步方案，得益于它的关键词yield后面的返回值，value，将作为参数传递下去，这符合了promise链式的需求，每一次通过调用next()才能继续往下进行，这给了用于反馈每次异步请求的回调函数以执行的控件，通过在生成器中指定try…catch，在执行时调用throw()方法也可以捕获异常，再通过自调用迭代，就可以完成异步请求的进一步扁平化，如同步函数一样。</p>
+</blockquote>
+</li>
+<li><p>格式示例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">    体验Generator异步方案</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ajax</span> (<span class="params">url</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest()</span><br><span class="line">        xhr.open(<span class="string">'GET'</span>, url)</span><br><span class="line">        xhr.responseType = <span class="string">'json'</span></span><br><span class="line">        xhr.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">this</span>.status === <span class="number">200</span>) &#123;</span><br><span class="line">                resolve(<span class="keyword">this</span>.response) <span class="comment">// 承诺成功达成之后，返回得到的数据</span></span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                reject(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="keyword">this</span>.statusText)) <span class="comment">// 承诺无法达成之后，返回new出来的错误信息</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        xhr.send()</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义一个生成器</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> * <span class="title">main</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> foo = <span class="keyword">yield</span> ajax(<span class="string">'./api/foo.json'</span>)</span><br><span class="line">        <span class="built_in">console</span>.log(foo)</span><br><span class="line">    </span><br><span class="line">        <span class="keyword">const</span> posts = <span class="keyword">yield</span> ajax(<span class="string">'./api/posts.json'</span>)</span><br><span class="line">        <span class="built_in">console</span>.log(posts)</span><br><span class="line">        <span class="comment">// 创造一个异常</span></span><br><span class="line">        <span class="keyword">const</span> postt = <span class="keyword">yield</span> ajax(<span class="string">'./api/postt.json'</span>)</span><br><span class="line">        <span class="built_in">console</span>.log(postt)</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(e)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> g = main() <span class="comment">// 创建生成器函数</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// ----------------------------------------------------------------------------------</span></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">generator初体验</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="comment">// result.value =&gt; 返回的就是yield后面的promise异步任务</span></span><br><span class="line"><span class="comment">/* const result = g.next() // 进入函数体</span></span><br><span class="line"><span class="comment">    result.value</span></span><br><span class="line"><span class="comment">    .then(data =&gt; &#123;</span></span><br><span class="line"><span class="comment">        // console.log(data) // data就是上一次触发next()触发的异步请求的结果 // 输出结果：foo.json文件的内容</span></span><br><span class="line"><span class="comment">        // 将上一个异步请求的结果作为参数，传给下一个promise,符合了promise的链式调用</span></span><br><span class="line"><span class="comment">        const result2 = g.next(data)</span></span><br><span class="line"><span class="comment">        // 判断返回内容，done是否为true，决定是否结束</span></span><br><span class="line"><span class="comment">        if (result2.done) return console.log('结束了')</span></span><br><span class="line"><span class="comment">        // 处理第二个promise的回调</span></span><br><span class="line"><span class="comment">        result2.value</span></span><br><span class="line"><span class="comment">            .then(data =&gt; &#123;</span></span><br><span class="line"><span class="comment">                const result3 = g.next(data)</span></span><br><span class="line"><span class="comment">                if (result3.done) return console.log('结束了')</span></span><br><span class="line"><span class="comment">                // ...... 无限循环嵌套,因此需要递归解决</span></span><br><span class="line"><span class="comment">            &#125;)</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    &#125;) */</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// -------------------------------------------------------------------------------</span></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">    递归执行generator</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="comment">// 定于一个函数，用来递归执行generator</span></span><br><span class="line"><span class="comment">/* function handleResult  (result) &#123;</span></span><br><span class="line"><span class="comment">    if (result.done) return // 生成器函数结束</span></span><br><span class="line"><span class="comment">    result.value</span></span><br><span class="line"><span class="comment">        .then(data =&gt; &#123;</span></span><br><span class="line"><span class="comment">             handleResult(g.next(data)) // 嵌套使用，如果进入到这一步，相当于又重新调用了一下这个函数</span></span><br><span class="line"><span class="comment">        &#125;, error =&gt; &#123;</span></span><br><span class="line"><span class="comment">            g.throw(error) // 打印异常的话，需要改造generator,添加try...catch用来处理异常 // 打印结果：Error: Not Found at XMLHttpRequest.xhr.onload (10.js:14)</span></span><br><span class="line"><span class="comment">        &#125;)</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">handleResult(g.next()) */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// -----------------------------------------------------------------</span></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">    复用生成器函数 ： co</span></span><br><span class="line"><span class="comment">        https://github.com/tj/co // 社区中关于generato生成器复用函数的完整的库</span></span><br><span class="line"><span class="comment">        被Async await 取代</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">co</span> (<span class="params">generator</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> g = generator()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">handleResult</span> (<span class="params">result</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (result.done) <span class="keyword">return</span></span><br><span class="line">        result.value</span><br><span class="line">            .then(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">                handleResult(g.next(data)) <span class="comment">// 循环调用</span></span><br><span class="line">            &#125;, error =&gt; &#123;</span><br><span class="line">                g.throw(error)</span><br><span class="line">            &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//  内部自调用</span></span><br><span class="line">    handleResult(g.next())</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 传入一个generator</span></span><br><span class="line">co(main)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="5·Async语法糖"><a href="#5·Async语法糖" class="headerlink" title="5·Async语法糖"></a>5·Async语法糖</h1><blockquote>
+<p>终极的异步解决方案。</p>
+<p>语言层面的异步编程标准</p>
+</blockquote>
+<ul>
+<li><p>语法类似于generator</p>
+<ul>
+<li>关键词从<code>*&amp;yield</code>变成了<code>async &amp; await</code></li>
+<li>目前<code>await</code>无法单独使用，只能在async定义的函数中使用</li>
+</ul>
+</li>
+<li><p>使用Async修饰的函数，返回的也是一个promise</p>
+</li>
+<li><p>不再需要配合执行器，直接调用修饰的函数，就是执行的全部过程</p>
+</li>
+<li><p>格式示例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">    Async语法糖</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">    终极的异步解决方案。</span></span><br><span class="line"><span class="comment">    语言层面的异步编程标准</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">    语法类似于generator</span></span><br><span class="line"><span class="comment">    返回一个promise</span></span><br><span class="line"><span class="comment">    不再需要配合执行器</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ajax</span> (<span class="params">url</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest()</span><br><span class="line">        xhr.open(<span class="string">'GET'</span>, url)</span><br><span class="line">        xhr.responseType = <span class="string">'json'</span></span><br><span class="line">        xhr.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">this</span>.status === <span class="number">200</span>) &#123;</span><br><span class="line">                resolve(<span class="keyword">this</span>.response) <span class="comment">// 承诺成功达成之后，返回得到的数据</span></span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                reject(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="keyword">this</span>.statusText)) <span class="comment">// 承诺无法达成之后，返回new出来的错误信息</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        xhr.send()</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">main</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> foo = <span class="keyword">await</span> ajax(<span class="string">'./api/foo.json'</span>)</span><br><span class="line">        <span class="built_in">console</span>.log(foo)</span><br><span class="line">    </span><br><span class="line">        <span class="keyword">const</span> posts = <span class="keyword">await</span> ajax(<span class="string">'./api/posts.json'</span>)</span><br><span class="line">        <span class="built_in">console</span>.log(posts)</span><br><span class="line">        <span class="comment">// 创造一个异常</span></span><br><span class="line">        <span class="keyword">const</span> postt = <span class="keyword">await</span> ajax(<span class="string">'./api/postt.json'</span>)</span><br><span class="line">        <span class="built_in">console</span>.log(postt)</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(e)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">main()</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>​    generator.throw() 用于抛出异常</p>
+
+                
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2020/05/23/TypeScript语言学习笔记/" data-toggle="tooltip" data-placement="top" title="TypeScript语言学习笔记">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2020/05/18/ECMAScript新特性学习笔记/" data-toggle="tooltip" data-placement="top" title="ECMAScript新特性学习笔记">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                <!-- tip start -->
+                
+
+                
+                <div class="comment_notes">
+                    <p>
+                        This is copyright.
+                    </p>
+                </div>
+                
+                <!-- tip end -->
+
+                <!-- Music start-->
+                
+                
+<link rel="stylesheet" href="/css/music-player/fonts/iconfont.css">
+
+
+<link rel="stylesheet" href="/css/music-player/css/reset.css">
+
+
+<link rel="stylesheet" href="/css/music-player/css/player.css">
+
+
+<div class="music-player">
+    <audio class="music-player__audio" ></audio>
+    <div class="music-player__main">
+        <div class="music-player__blur"></div>
+        <div class="music-player__disc">
+            <div class="music-player__image">
+                <img width="100%" src="" alt="">
+            </div>
+            <div class="music-player__pointer"><img width="100%" src="/img/cd_tou.png" alt=""></div>
+        </div>
+        <div class="music-player__controls">
+            <div class="music__info">
+                <h3 class="music__info--title">...</h3>
+                <p class="music__info--singer">...</p>
+            </div>
+            <div class="player-control">
+                <div class="player-control__content">
+                    <div class="player-control__btns">
+                        <div class="player-control__btn player-control__btn--prev"><i class="iconfont icon-prev"></i></div>
+                        <div class="player-control__btn player-control__btn--play"><i class="iconfont icon-play"></i></div>
+                        <div class="player-control__btn player-control__btn--next"><i class="iconfont icon-next"></i></div>
+                        <div class="player-control__btn player-control__btn--mode"><i class="iconfont icon-loop"></i></div>
+                    </div>
+                    <div class="player-control__volume">
+                        <div class="control__volume--icon player-control__btn"><i class="iconfont icon-volume"></i></div>
+                        <div class="control__volume--progress player_progress"></div>
+                    </div>
+                </div>
+                <div class="player-control__content">
+                    <div class="player__song--progress player_progress"></div>
+                    <div class="player__song--timeProgess nowTime">00:00</div>
+                    <div class="player__song--timeProgess totalTime">00:00</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/js/music-player/utill.js"></script>
+
+
+<script src="/js/music-player/jquery.min.js"></script>
+
+
+<script src="/js/music-player/player.js"></script>
+
+
+                
+                <!-- Music end -->
+
+                <!-- Sharing -->
+                
+                <!-- Sharing -->
+
+                <!-- gitment start -->
+                
+                <!-- gitment end -->
+
+                <!-- 来必力City版安装代码 -->
+                
+                <!-- City版安装代码已完成 -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      
+        <aside id="sidebar">
+          <div id="toc" class="toc-article">
+          <strong class="toc-title">Contents</strong>
+          
+            
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#异步编程是什么？"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">异步编程是什么？</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#内容概要"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">内容概要</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#1·同步模式与异步模式"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">1·同步模式与异步模式</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#1-1·同步模式"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">1.1·同步模式</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#1-2·异步模式"><span class="toc-nav-number">3.2.</span> <span class="toc-nav-text">1.2·异步模式</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#2·回调函数"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">2·回调函数</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#3·Promise异步方案"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">3·Promise异步方案</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#3-1·Promise的基本用法"><span class="toc-nav-number">5.1.</span> <span class="toc-nav-text">3.1·Promise的基本用法</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#3-2·Promise的使用案例"><span class="toc-nav-number">5.2.</span> <span class="toc-nav-text">3.2·Promise的使用案例</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#3-3·Promise链式调用"><span class="toc-nav-number">5.3.</span> <span class="toc-nav-text">3.3·Promise链式调用</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#3-4·Promise异常处理"><span class="toc-nav-number">5.4.</span> <span class="toc-nav-text">3.4·Promise异常处理</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#3-5·Promise静态方法"><span class="toc-nav-number">5.5.</span> <span class="toc-nav-text">3.5·Promise静态方法</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#3-6·Promise并行执行"><span class="toc-nav-number">5.6.</span> <span class="toc-nav-text">3.6·Promise并行执行</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#3-7·Promise执行时序"><span class="toc-nav-number">5.7.</span> <span class="toc-nav-text">3.7·Promise执行时序</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#3-8·Promise常见误区"><span class="toc-nav-number">5.8.</span> <span class="toc-nav-text">3.8·Promise常见误区</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#4·Generator异步方案"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">4·Generator异步方案</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#4-1·Generator-异步解决方案回顾"><span class="toc-nav-number">6.1.</span> <span class="toc-nav-text">4.1·Generator 异步解决方案回顾</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#4-2·体验Generator异步方案"><span class="toc-nav-number">6.2.</span> <span class="toc-nav-text">4.2·体验Generator异步方案</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#5·Async语法糖"><span class="toc-nav-number">7.</span> <span class="toc-nav-text">5·Async语法糖</span></a></li></ol>
+            
+          
+          </div>
+        </aside>
+      
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#JS" title="JS">JS</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+
+
+<style  type="text/css">
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Abell99">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+<!-- 
+                 -->
+<!-- 
+                 -->
+
+                <!--  -->
+
+                <!--  -->
+
+                <!--  -->
+
+                <!--  -->
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Abel 2020 
+                    <br>
+                    Powered by 
+                    <a href="https://github.com/dusign/hexo-theme-snail" target="_blank" rel="noopener">
+                        <i>hexo-theme-snail</i>
+                    </a> | 
+                    <iframe name="star" style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0"
+                        width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=dusign&repo=hexo-theme-snail&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- Search -->
+
+<script src="/js/search.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://abel.run/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Search -->
+
+    <script type="text/javascript">      
+        var search_path = "search.xml";
+        if (search_path.length == 0) {
+            search_path = "search.xml";
+        }
+    var path = "/" + search_path;
+    searchFunc(path, 'local-search-input', 'local-search-result');
+    </script>
+
+
+<!-- busuanzi -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+
+    
+        <!-- background effects line -->
+        
+
+        
+            <script type="text/javascript" src="/js/mouse-click.js" content='[&quot;🌱&quot;,&quot;just do it&quot;,&quot;🍀&quot;]' color='[&quot;rgb(121,93,179)&quot; ,&quot;rgb(76,180,231)&quot; ,&quot;rgb(184,90,154)&quot;]'></script>
+        
+
+        <!-- background effects end -->
+    
+
+    <!--<script size="50" alpha='0.3' zIndex="-999" src="/js/ribbonStatic.js"></script>-->
+    
+        <script src="/js/ribbonDynamic.js"></script>
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+</body>
+
+</html>

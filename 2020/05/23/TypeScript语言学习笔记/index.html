@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="baidu-site-verification" content="093lY4ziMu" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="description" content="Abel的个人博客">
+    <meta name="keyword"  content="前端, 学习笔记, 生活">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!--<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>-->
+    <title>
+        
+          TypeScript语言学习笔记 - Run!Abel!
+        
+    </title>
+
+    <link rel="canonical" href="https://abel.run/2020/05/23/TypeScript语言学习笔记/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS --> 
+    
+        
+<link rel="stylesheet" href="/css/dusign-light.css">
+
+        
+<link rel="stylesheet" href="/css/dusign-common-light.css">
+
+        
+<link rel="stylesheet" href="/css/font-awesome.css">
+
+        
+<link rel="stylesheet" href="/css/toc.css">
+
+        <!-- background effects end -->
+    
+    
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    
+<link rel="stylesheet" href="/css/widget.css">
+
+
+    
+<link rel="stylesheet" href="/css/rocket.css">
+
+
+    
+<link rel="stylesheet" href="/css/signature.css">
+
+
+    
+<link rel="stylesheet" href="/css/fonts.googleapis.css">
+
+
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <!-- photography -->
+    
+<link rel="stylesheet" href="/css/photography.css">
+
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- background effects start -->
+    
+    <!-- background effects end -->
+
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            
+                background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../../../../img/default.jpg')
+                /*post*/
+            
+        
+    }
+    
+    #signature{
+        background-image: url('/img/signature/dusign.png');
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#TS JS" title="TS JS">TS JS</a>
+                            
+                        </div>
+                        <h1>TypeScript语言学习笔记</h1>
+                        <h2 class="subheading">TS的知识储备</h2>
+                        <span class="meta">
+                            Posted by Abel on
+                            2020-05-23
+                        </span>
+
+                        
+                            <div class="blank_box"></div>
+                            <span class="meta">
+                                Words <span class="post-count">4.3k</span> and
+                                Reading Time <span class="post-count">17</span> Minutes
+                            </span>
+                            <div class="blank_box"></div>
+                            <!-- 不蒜子统计 start -->
+                            <span class="meta">
+                                Viewed <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Times
+                            </span>
+                            <!-- 不蒜子统计 end -->
+                        
+
+                    </div>
+                
+
+                </div>
+            </div>
+        </div>      
+    </div>
+
+    
+    <div class="waveWrapper">
+        <div class="wave wave_before" style="background-image: url('/img/wave-light.png')"></div>
+        <div class="wave wave_after" style="background-image: url('/img/wave-light.png')"></div>
+    </div>
+    
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Run！Abel ！</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">首页</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">月刊</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">关于我</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/categories/">分类</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/photography/">摄影</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">标签</a>
+                        </li>
+                        
+                    
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="课程概括"><a href="#课程概括" class="headerlink" title="课程概括"></a>课程概括</h1><blockquote>
+<p>TypeScript解决的痛点：</p>
+<p>​    解决了JavaScript类型系统的问题</p>
+</blockquote>
+<ul>
+<li>内容概括<ul>
+<li>强类型与弱类型</li>
+<li>静态类型与动态类型</li>
+<li>JavaScript自有类型系统的问题</li>
+<li>Flow静态类型检查方案</li>
+<li>TypeScriptt语言规范与基本应用</li>
+</ul>
+</li>
+</ul>
+<h1 id="1·类型的问题"><a href="#1·类型的问题" class="headerlink" title="1·类型的问题"></a>1·类型的问题</h1><blockquote>
+<p>编程语言按类型区分：</p>
+<p>​    强类型与弱类型（类型安全）</p>
+<p>​    静态类型与动态类型（类型检查）</p>
+</blockquote>
+<h2 id="1-1·强类型与弱类型"><a href="#1-1·强类型与弱类型" class="headerlink" title="1.1·强类型与弱类型"></a>1.1·强类型与弱类型</h2><blockquote>
+<p>从类型安全角度来区分：</p>
+<p>​    强类型与弱类型</p>
+<p>对于类型的限制的强弱问题</p>
+<p>由于这种强弱类型之分根本不是某个权威机构的定义，因此强弱类型的界定方式，基本集中于类型约束问题</p>
+</blockquote>
+<ul>
+<li><p>强类型 </p>
+<ul>
+<li>在语言层面限制函数的实参类型必须与形参类型相同</li>
+<li>强类型语言中不允许任意的隐式类型转换</li>
+<li>优势<ul>
+<li>错误更早暴漏，在编码阶段即可体现</li>
+<li>代码更加智能，编码更加准确</li>
+<li>重构更牢靠</li>
+<li>减少不必要的类型判断</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>弱类型</p>
+<ul>
+<li><p>弱类型在语言层面不会限制实参的类型</p>
+</li>
+<li><p>弱类型语言则允许任意的数据隐式类型转换</p>
+</li>
+<li><p>实际产生的问题</p>
+<ul>
+<li><p>异常只有在运行后才会体现</p>
+</li>
+<li><p>类型不明确，函数功能就不确定</p>
+</li>
+<li><p>对象索引器的错误用法</p>
+</li>
+<li><p>格式示例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">    弱类型的问题</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> obj = &#123;&#125;</span><br><span class="line">obj.foo()</span><br><span class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">   obj.foo() </span><br><span class="line">&#125;, <span class="number">1000</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// ------------------------------</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span> (<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a + b</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(sum(<span class="number">100</span>, <span class="number">100</span>))</span><br><span class="line"><span class="built_in">console</span>.log(sum(<span class="number">100</span>, <span class="string">'100'</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">// -----------------------------------</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> obj = &#123;&#125;</span><br><span class="line">obj[<span class="literal">true</span>] = <span class="number">100</span></span><br><span class="line"><span class="built_in">console</span>.log(obj[<span class="string">'true'</span>])</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>由于弱类型照成的问题虽然可以通过约定来解决，但是</p>
+<p>​    君子约定有隐患，强制要求有保障</p>
+</blockquote>
+<h2 id="1-2·静态类型与动态类型"><a href="#1-2·静态类型与动态类型" class="headerlink" title="1.2·静态类型与动态类型"></a>1.2·静态类型与动态类型</h2><blockquote>
+<p>从类型检查角度来区分</p>
+<p>​    静态类型与动态类型 </p>
+</blockquote>
+<ul>
+<li>静态类型<ul>
+<li>一个变量在声明时就明确了类型，且不允许再次修改</li>
+</ul>
+</li>
+<li>动态类型<ul>
+<li>在运行阶段才能明确一个数据的类型，且变量的类型可以随时改变</li>
+<li>动态类型的语言中，变量没有类型，而变量中存放的值是有类型的</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-3·JavaScript类型系统特征"><a href="#1-3·JavaScript类型系统特征" class="headerlink" title="1.3·JavaScript类型系统特征-"></a>1.3·JavaScript类型系统特征-</h2><blockquote>
+<p>弱类型 且 动态类型</p>
+</blockquote>
+<ul>
+<li>优点：<ul>
+<li>高自由度，高灵活度</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>缺失了类型系统的可靠性</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>为什么JavaScript不是一门强类型，静态类型的语言:</p>
+<ul>
+<li>早期设计的应用场景简单</li>
+<li>脚本语言，没有编译环节，无法进行类型检查</li>
+</ul>
+</blockquote>
+<h1 id="2·Flow"><a href="#2·Flow" class="headerlink" title="2·Flow"></a>2·Flow</h1><blockquote>
+<p>JavaScript的类型检查器</p>
+<p>使用参考：<a href="https://www.jianshu.com/p/7716dc8b2206" target="_blank" rel="noopener">简书文字，flow的使用</a></p>
+</blockquote>
+<ul>
+<li>安装：<code>yarn add flow-bin --dev</code></li>
+</ul>
+<h2 id="2-1·格式示例"><a href="#2-1·格式示例" class="headerlink" title="2.1·格式示例"></a>2.1·格式示例</h2><blockquote>
+<p>演示</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// @flow</span></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">    flow的体验</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 通过注释开启flow校验：</span></span><br><span class="line"><span class="comment">    0.安装：yarn add flow-bin --dev</span></span><br><span class="line"><span class="comment">    1.在js开头声明`@flow`,通过`: number`添加类型注释</span></span><br><span class="line"><span class="comment">    2.关闭编辑器自带的校验 javascriprt validate:false</span></span><br><span class="line"><span class="comment">    3.初始化flow配置文件：yarn flow init</span></span><br><span class="line"><span class="comment">    4.运行flow：yarn flow</span></span><br><span class="line"><span class="comment">    5.停止flow：yarn flow stop</span></span><br><span class="line"><span class="comment">    6.清除注释，@balel/preset-flow 或者 yarn add flow-remove-types =&gt; yarn flow-remove-types . -d dist</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">    安装插件，保存即可找到错误：flow language support</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 功能 */</span></span><br><span class="line"><span class="comment">// -------------------------------</span></span><br><span class="line"><span class="comment">// -----------------------------------------------</span></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">    类型推断</span></span><br><span class="line"><span class="comment">        自动推断变量或者参数的类型</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">square</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n * n </span><br><span class="line">&#125;</span><br><span class="line">square(<span class="number">100</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// ----------------------------------------------------</span></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">    flow支持的原始类型</span></span><br><span class="line"><span class="comment">        string number boolean null undefined symbol</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">const</span> a: string = <span class="string">'abel'</span></span><br><span class="line"><span class="keyword">const</span> b: number = <span class="number">123456</span> <span class="comment">// NaN // Infinity</span></span><br><span class="line"><span class="keyword">const</span> c: boolean = <span class="literal">false</span> <span class="comment">// trun</span></span><br><span class="line"><span class="keyword">const</span> d: <span class="literal">null</span> = <span class="literal">null</span></span><br><span class="line"><span class="keyword">const</span> e: <span class="keyword">void</span> = <span class="literal">undefined</span></span><br><span class="line"><span class="keyword">const</span> g: symbol = <span class="built_in">Symbol</span>()</span><br><span class="line"><span class="comment">// ----------------------------------------------</span></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">    数组类型限制</span></span><br><span class="line"><span class="comment">        Array</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arr1: <span class="built_in">Array</span>&lt;number&gt; = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>] <span class="comment">// 限制数组，并且限制数组成员类型</span></span><br><span class="line"><span class="keyword">const</span> arr2: number[] = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">// 元组，定制数组组成,定制只能有几个成员组成，并声明每一个成员的类型</span></span><br><span class="line"><span class="keyword">const</span> arr3: [string, number] = [<span class="string">'foo'</span>, <span class="number">100</span>]</span><br><span class="line"><span class="comment">// --------------------------------------------</span></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">    对象类型限制</span></span><br><span class="line"><span class="comment">        Object</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> obj1: &#123; <span class="attr">foo</span>: string, <span class="attr">bar</span>: number &#125; = &#123; <span class="attr">foo</span>: <span class="string">'string'</span>, <span class="attr">bar</span>: <span class="number">100</span> &#125; <span class="comment">// 限制对象属性个数，并且限制对象的成员名称以及类型</span></span><br><span class="line"><span class="keyword">const</span> obj2: &#123; foo?: string, <span class="attr">bar</span>: number &#125; = &#123; <span class="attr">bar</span>: <span class="number">100</span> &#125; <span class="comment">// ?修饰的属性名表示可以有可以没有</span></span><br><span class="line"><span class="keyword">const</span> obj3: &#123; [string]: string &#125; = &#123;&#125; <span class="comment">// 不限制属性的个数，但是限制属性的类型以及属性值的类型</span></span><br><span class="line">obj3.key1 = <span class="string">'value1'</span></span><br><span class="line">obj3.key2 = <span class="string">'value2'</span></span><br><span class="line"><span class="comment">// --------------------------------------------</span></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">    函数类型限制</span></span><br><span class="line"><span class="comment">*/</span> </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo1</span> (<span class="params">a: number, b: number</span>) </span>&#123; <span class="comment">// 用于形参</span></span><br><span class="line">    <span class="keyword">return</span> a + b</span><br><span class="line">&#125;</span><br><span class="line">foo1(<span class="number">100</span>, <span class="number">100</span>) <span class="comment">// 实参只能是形参声明的类型</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo2</span> (<span class="params"></span>):<span class="title">number</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">100</span> <span class="comment">// 用于函数，函数的返回值只能是声明的类型</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo3</span> (<span class="params">callback: (string, number</span>) =&gt; <span class="title">void</span>) </span>&#123; <span class="comment">// 用于回调函数以及回调函数的返回值</span></span><br><span class="line">    callback(<span class="string">'string'</span>, <span class="number">100</span>)</span><br><span class="line">&#125;</span><br><span class="line">foo3(<span class="function"><span class="keyword">function</span> (<span class="params">str, n</span>) </span>&#123;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// -------------------------------------------</span></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">    特殊类型</span></span><br><span class="line"><span class="comment">        字面量 自定义类型限制   `|`的使用</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">const</span> str1: <span class="string">'foo'</span> = <span class="string">'foo'</span> <span class="comment">// 限制字符串只能为固定内容   </span></span><br><span class="line"><span class="keyword">const</span> type: <span class="string">'success'</span> | <span class="string">'waring'</span> | <span class="string">'danger'</span> = <span class="string">'success'</span></span><br><span class="line"></span><br><span class="line">type StringOrNumber = string | number <span class="comment">// 自定义个限制类型</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> str2: StringOrNumber = <span class="string">'string'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> gender: ?number = <span class="literal">null</span> <span class="comment">// ?设置可以为控或者undefind === const gender: number | null | void</span></span><br><span class="line"><span class="comment">// ------------------------------------------</span></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">    Mixed 与 Any</span></span><br><span class="line"><span class="comment">        mixed === any === 任意类型</span></span><br><span class="line"><span class="comment">        mixed 强类型 更为安全，只有通过判断才能对参数进一步的处理</span></span><br><span class="line"><span class="comment">        any 弱类型 不推荐使用，主要用来兼容以前的老代码</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 对比：</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// mixed </span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">passMixed</span> (<span class="params">value: mixed</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">typeof</span> value === <span class="string">'string'</span>)</span><br><span class="line">    value.substr(<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">typeof</span> value === <span class="string">'number'</span>)</span><br><span class="line">    <span class="built_in">console</span>.log(value * value)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// passMixed('string')</span></span><br><span class="line">passMixed(<span class="number">100</span>)</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">passAny</span> (<span class="params">value: any</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// value.substr(1)</span></span><br><span class="line">    <span class="built_in">console</span>.log(value * value)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// passAny('string')</span></span><br><span class="line">passAny(<span class="number">100</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// ----------------------------------------------</span></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">    运行环境 API 对于运行环境的限制</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> element: HTMLElement | <span class="literal">null</span> = <span class="built_in">document</span>.getElementById(<span class="string">'app'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// ------------------------------------------------</span></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">    flow类型的总结</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">    学习的目的，主要用于在今后学习框架源码的时候，能够明白使用了flow的部分的意义</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<h1 id="3·TypeScript"><a href="#3·TypeScript" class="headerlink" title="3·TypeScript"></a>3·TypeScript</h1><blockquote>
+<p>JavaScript的超集(superset)，渐进式的提升</p>
+<p>TypeScript—-前端领域的第二语言</p>
+</blockquote>
+<p><img src="https://pics.images.ac.cn/image/5ec6aa935f786.html" alt="TypeScript"></p>
+<ul>
+<li>任何环境下的JavaScript都支持</li>
+<li>比起flow，功能更为强大，生态更加健全，更完善</li>
+</ul>
+<h2 id="3-1·TypeScript的初始"><a href="#3-1·TypeScript的初始" class="headerlink" title="3.1·TypeScript的初始"></a>3.1·TypeScript的初始</h2><blockquote>
+<p>TypeScipt的安装与配置</p>
+</blockquote>
+<ul>
+<li>安装：<code>yarn add typescript --dev</code></li>
+<li>转换单个文件：<ul>
+<li>全部转换为使用es3的标准，完全兼容之前的老代码</li>
+<li>运行：<code>yarn tsc ts文件名</code></li>
+</ul>
+</li>
+<li>转换整个项目或工程<ul>
+<li>初始化配置文件：<code>yarn tsc --init</code></li>
+<li>根据需求更改tsc配置文件</li>
+<li>运行：<code>yarn tsc</code><ul>
+<li>中文报错：<code>yarn tsc --locale zh-CN</code></li>
+<li>vscode报错的中文设置setting=&gt;typescript local=ch-cn</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-2·基本数据类型"><a href="#3-2·基本数据类型" class="headerlink" title="3.2·基本数据类型"></a>3.2·基本数据类型</h2><blockquote>
+<p>基本类型，在ts配置文件中，只有设置非严格模式，才能默认允许为空</p>
+</blockquote>
+<ul>
+<li><p>基本类型包括：</p>
+<ul>
+<li>string</li>
+<li>number</li>
+<li>boolean</li>
+<li>void</li>
+<li>null</li>
+<li>underfined</li>
+<li>symbol</li>
+<li>any<ul>
+<li>弱类型，动态类型，存在安全问题</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>格式示例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">    如何让ts报错显示中文</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 运行指令：`yarn tsc --locale zh-CN`</span></span><br><span class="line"><span class="comment">// ------------------------------------------------------</span></span><br><span class="line"><span class="keyword">const</span> a: string = <span class="string">'我是一个字符串'</span></span><br><span class="line"><span class="keyword">const</span> b: number = <span class="number">123456</span> <span class="comment">// NaN // Infinity</span></span><br><span class="line"><span class="keyword">const</span> c: boolean = <span class="literal">true</span></span><br><span class="line"><span class="comment">// const d: boolean = null // 严格模式下不能null</span></span><br><span class="line"><span class="keyword">const</span> e: <span class="keyword">void</span> = <span class="literal">undefined</span> <span class="comment">// void只能为undefined不能是null</span></span><br><span class="line"><span class="keyword">const</span> f: <span class="literal">null</span> = <span class="literal">null</span></span><br><span class="line"><span class="keyword">const</span> g: <span class="literal">undefined</span> = <span class="literal">undefined</span></span><br><span class="line"><span class="keyword">const</span> h: symbol = <span class="built_in">Symbol</span>()</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="3-3·引用数据类型"><a href="#3-3·引用数据类型" class="headerlink" title="3.3·引用数据类型"></a>3.3·引用数据类型</h2><blockquote>
+<p>对于引用型数据类型的约束</p>
+</blockquote>
+<ul>
+<li><p>Array</p>
+<ul>
+<li><p>限制变量为数组</p>
+<ul>
+<li><p>关键词：Array || []</p>
+</li>
+<li><p>限制数组成员：<number> || number</number></p>
+<blockquote>
+<p>以number为例</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>格式示例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">    Array类型的限制</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">const</span> arr1: <span class="built_in">Array</span>&lt;number&gt; = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>] <span class="comment">// 限制数组类型，且限制数组中的成员类型必须为数字</span></span><br><span class="line"><span class="keyword">const</span> arr2: number[] = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span> (<span class="params">...args: number[]</span>) </span>&#123; <span class="comment">// 限制传进来的参数必须都是数字</span></span><br><span class="line">    <span class="keyword">return</span> args.reduce(<span class="function">(<span class="params">prev, current</span>) =&gt;</span> prev + current, <span class="number">0</span>) <span class="comment">// 计算累加和</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>Object</p>
+<ul>
+<li><p>限制变量为对象</p>
+</li>
+<li><p>关键词：Object || {}</p>
+</li>
+<li><p>格式示例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">    Object类型的限制</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">const</span> foo1: object = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125; <span class="comment">// 限制函数类型</span></span><br><span class="line"><span class="keyword">const</span> obj1: &#123; <span class="attr">foo</span>: number, <span class="attr">bar</span>: string&#125; = &#123; <span class="attr">foo</span>: <span class="number">123</span>, <span class="attr">bar</span>: <span class="string">'string'</span> &#125; <span class="comment">// 限制对象属性个数，属性的名字以及属性值的类型、</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>function</p>
+<blockquote>
+<p>对于参数以及返回值的约束</p>
+</blockquote>
+<ul>
+<li><p>限制参数类型</p>
+</li>
+<li><p>限制返回值类型</p>
+</li>
+<li><p>格式示例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">    函数的类型约束 </span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo2</span> (<span class="params">a: number, b: number = <span class="number">10</span>, c?: number, ...rest: number[]</span>): <span class="title">string</span>  </span>&#123;</span><br><span class="line">    <span class="comment">// 设置参数类型，参数默认值，可选参数，剩余参数，以及返回值类型</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">'这里只能返回字符串了'</span></span><br><span class="line">&#125;</span><br><span class="line">foo2(<span class="number">100</span>, <span class="number">12</span>, <span class="number">15</span>, <span class="number">56</span>, <span class="number">56</span>)</span><br><span class="line"><span class="comment">// 函数表达式,定义回调函数类型</span></span><br><span class="line"><span class="keyword">const</span> foo3: <span class="function">(<span class="params">a: number, b: number</span>) =&gt;</span> string = <span class="function"><span class="keyword">function</span> (<span class="params">a: number, b: number</span>):<span class="title">string</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'这里只能返回字符串了'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-4·类型系统新增数据结构"><a href="#3-4·类型系统新增数据结构" class="headerlink" title="3.4·类型系统新增数据结构"></a>3.4·类型系统新增数据结构</h2><blockquote>
+<p>数组对应的元组，限定值内容的枚举，参数的接口</p>
+</blockquote>
+<ul>
+<li><p>元组</p>
+<ul>
+<li><p>说明：用来明确元素数量，以及各个元素的类型</p>
+</li>
+<li><p>格式示例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">    元组类型</span></span><br><span class="line"><span class="comment">        数据结构</span></span><br><span class="line"><span class="comment">        明确元素数量，以及各个元素类型</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> tuple: [number, string] = [<span class="number">18</span>, <span class="string">'abel'</span>]</span><br><span class="line"><span class="comment">// 妙用：</span></span><br><span class="line"><span class="built_in">Object</span>.entries(&#123; <span class="comment">// 通过entries获取对象的属性以键值对的模式，输出的结果就是一个元组，因为限制了成员数量</span></span><br><span class="line">    foo: <span class="number">123</span>,</span><br><span class="line">    bar: <span class="number">456</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>枚举</p>
+<ul>
+<li><p>说明：用来限定内容选择，并声明选项的意义</p>
+</li>
+<li><p>关键词：enum</p>
+</li>
+<li><p>格式示例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">    枚举类型</span></span><br><span class="line"><span class="comment">        数据结构</span></span><br><span class="line"><span class="comment">        限制选项，并声明选项的意义</span></span><br><span class="line"><span class="comment">        关键词: enum</span></span><br><span class="line"><span class="comment">        </span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="comment">// 不加const编译后，成为一个双向的键值对对象，加const之后，会出现代码入侵的效果，引用枚举的地方，会直接替换成枚举的值</span></span><br><span class="line"><span class="keyword">const</span> enum PostStatus &#123; <span class="comment">// 特有的枚举类型，与对象的不同是，键值对：换成了等号</span></span><br><span class="line">    Draft = <span class="number">0</span>,</span><br><span class="line">    Unpublished = <span class="number">1</span>,</span><br><span class="line">    Published = <span class="number">2</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> post = &#123;</span><br><span class="line">    title: <span class="string">'hello typescript'</span>,</span><br><span class="line">    content: <span class="string">'typescript is a typed superset of javascript'</span>,</span><br><span class="line">    status: PostStatus.Draft <span class="comment">// 限制值只能为枚举类型中的值</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>Interfaces接口</p>
+<ul>
+<li><p>说明：用来单独定义函数中，参数的内容</p>
+</li>
+<li><p>关键词：Interfaces</p>
+</li>
+<li><p>格式示例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">    Interfaces接口</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">interface Post &#123; <span class="comment">// 定义接口</span></span><br><span class="line">    title: string <span class="comment">// 定义接口成员类型</span></span><br><span class="line">    readonly summary: string <span class="comment">// 只读成员</span></span><br><span class="line">    content: string</span><br><span class="line">    subtitle?: string <span class="comment">// 可选成员 // string | undefined</span></span><br><span class="line">&#125;</span><br><span class="line">interface Cache &#123;</span><br><span class="line">    [key: string]: string | number<span class="comment">// 动态接口成员</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">printPost</span> (<span class="params">post: Post</span>) </span>&#123; <span class="comment">// 将参数类型指定为接口名称</span></span><br><span class="line">    <span class="built_in">console</span>.log(post.title)</span><br><span class="line">    <span class="built_in">console</span>.log(post.content)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> cache: Cache = &#123;&#125;</span><br><span class="line">cache.name = <span class="string">'abel'</span></span><br><span class="line">cache.age = <span class="number">12</span></span><br><span class="line">printPost(&#123; <span class="comment">// 必须符合接口要求，实参才能正确传递</span></span><br><span class="line">    title: <span class="string">'hello typescript'</span>,</span><br><span class="line">    summary: <span class="string">'aa'</span>,</span><br><span class="line">    content: <span class="string">'A javascript superset'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-5·类型的推断与断言"><a href="#3-5·类型的推断与断言" class="headerlink" title="3.5·类型的推断与断言"></a>3.5·类型的推断与断言</h2><blockquote>
+<p>隐式类型推断与不明确类型的断言</p>
+</blockquote>
+<ul>
+<li><p>推断</p>
+<ul>
+<li><p>说明：ts会自动为每一个未明确的类型，根据上下文的使用与赋值设立默认的类型</p>
+</li>
+<li><p>格式示例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">    隐式类型推断</span></span><br><span class="line"><span class="comment">        建议为每一个变量添加明确的类型</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">let</span> age = <span class="number">18</span></span><br><span class="line"><span class="comment">// age = 'eight' // 隐式推断age为number，因此无法再次赋值为字符串</span></span><br><span class="line"><span class="keyword">let</span> any1 <span class="comment">// 当隐式类型无法推断一个类型的时候，会将之类型判断为any</span></span><br><span class="line">any1 = <span class="number">123</span></span><br><span class="line">any1 = <span class="string">'123'</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>断言</p>
+<ul>
+<li><p>说明：系统无法自动判断的类型，需要断言是那种类型才可以进行下一步的使用</p>
+</li>
+<li><p>注意：断言不等于类型转换</p>
+</li>
+<li><p>关键词：as</p>
+</li>
+<li><p>格式示例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">    类型断言</span></span><br><span class="line"><span class="comment">        关键词: as、</span></span><br><span class="line"><span class="comment">        不等于类型转换</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">const</span> nums = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line"><span class="keyword">const</span> res = nums.find(<span class="function"><span class="params">i</span> =&gt;</span> i &gt; <span class="number">0</span>) <span class="comment">// res类型不明确，无法直接进行数学运算</span></span><br><span class="line"><span class="keyword">const</span> square = (res <span class="keyword">as</span> number) * (res <span class="keyword">as</span> number) <span class="comment">// 类型断言，确定的说明不确定的类型为某个类型，以便其进行下一步的操作</span></span><br><span class="line"><span class="keyword">const</span> num1 = <span class="xml"><span class="tag">&lt;<span class="name">number</span>&gt;</span>res // 不推荐使用，因为在jsx中，会和标签产生冲突</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-6·类的修饰符"><a href="#3-6·类的修饰符" class="headerlink" title="3.6·类的修饰符"></a>3.6·类的修饰符</h2><blockquote>
+<p>class：</p>
+<p>​    用于描述一类事物的抽象特征</p>
+<p>​    是ts对class的增强</p>
+<p>​    访问修饰符&amp;抽象类</p>
+</blockquote>
+<ul>
+<li><p>访问修饰符</p>
+<ul>
+<li>说明: ts中新增的三种访问修饰符，用来控制属性的可访问限制级别<ul>
+<li>public: 公有属性，字类可以继承并通过实例化对象属性访问</li>
+<li>protected: 保护属性，字类可以继承，但是无法通过实例化对象属性来访问</li>
+<li>private: 只能在class内部使用，无法继承，也无法通过实例化对象属性访问</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>另外在修饰符后面还可以添加只读，限制属性不可更改</p>
+</li>
+<li><p>readonly: 只读属性</p>
+</li>
+<li><p>格式示例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;* </span><br><span class="line">    类的定义：</span><br><span class="line">        描述一类事物的抽象特征</span><br><span class="line">    ts对于class的增强</span><br><span class="line">        访问修饰符</span><br><span class="line">        抽象类的概念</span><br><span class="line">*&#x2F;</span><br><span class="line">&#x2F;&#x2F; ------------------------------------------------------</span><br><span class="line">&#x2F;* </span><br><span class="line">    三个访问修饰符，用来控制属性的可访问限制级别</span><br><span class="line">        public: 公有属性，字类可以继承并通过实例化对象属性访问</span><br><span class="line">        protected: 保护属性，字类可以继承，但是无法通过实例化对象属性来访问</span><br><span class="line">        private: 只能在class内部使用，无法继承，也无法通过实例化对象属性访问</span><br><span class="line"></span><br><span class="line">        readonly: 只读属性</span><br><span class="line">*&#x2F;</span><br><span class="line">class Person &#123;</span><br><span class="line">    &#x2F;&#x2F; 类是属性必须拥有值，要不再这里赋值初始值，要不在构造函数中，赋值</span><br><span class="line">    name: string &#x3D; &#39;init name&#39;</span><br><span class="line">    private age: number &#x2F;&#x2F; 定义私有属性</span><br><span class="line">    public className: string &#x3D; &#39;1班&#39; &#x2F;&#x2F; 公有属性</span><br><span class="line">    protected gender: boolean &#x2F;&#x2F; 添加保护属性 </span><br><span class="line">    public readonly grade: number &#x3D; 2016 &#x2F;&#x2F; 只读属性</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    constructor (name: string, age: number) &#123; &#x2F;&#x2F; 限定属性值的类型</span><br><span class="line">        this.name &#x3D; name</span><br><span class="line">        this.age &#x3D; age</span><br><span class="line">        this.gender &#x3D; true</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    sayHi (msg: string): void &#123; &#x2F;&#x2F; 限定参数以及返回类型</span><br><span class="line">        console.log(&#96;i am $&#123;this.name&#125;,$&#123;this.age&#125;&#96;)</span><br><span class="line">        console.log(msg)</span><br><span class="line">        console.log(this.gender)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Student extends Person &#123;</span><br><span class="line">    &#x2F;&#x2F; es6固有的私有修饰符,外部无法访问构造函数，只能通过class的公开方法来实例化</span><br><span class="line">    private constructor (name: string, age: number) &#123;</span><br><span class="line">        super(name, age)</span><br><span class="line">        console.log(this.gender) &#x2F;&#x2F; 私有属性字类无法继承，但是受保护的属性可以被字类继承</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; 通过static公开的构造函数方法 来实例化对象</span><br><span class="line">    static create (name: string, age: number) &#123;</span><br><span class="line">        return new Student(name, age)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const abel &#x3D; new Person(&#39;abel&#39;, 18)</span><br><span class="line"></span><br><span class="line">console.log(abel.className) &#x2F;&#x2F; 公有属性可以在实例化对象中直接访问</span><br><span class="line">&#x2F;&#x2F; console.log(abel.gender, abel.age) &#x2F;&#x2F; 私有属性和受保护的属性都无法访问</span><br><span class="line"></span><br><span class="line">const jack &#x3D; Student.create(&#39;jack&#39;, 18)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="3-7·类的接口与抽象类"><a href="#3-7·类的接口与抽象类" class="headerlink" title="3.7·类的接口与抽象类"></a>3.7·类的接口与抽象类</h2><blockquote>
+<p>类的接口与抽象类，功能相近，但不尽相同，都用来约束引用它们的对象</p>
+</blockquote>
+<ul>
+<li><p>类的接口</p>
+<ul>
+<li><p>关键词：interface</p>
+</li>
+<li><p>说明：约束多个类中，必须拥有某种方法，接口中不声明方法体，只声明方法名与类型</p>
+</li>
+<li><p>格式示例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;* </span><br><span class="line">    接口：</span><br><span class="line">        关键词：interface</span><br><span class="line">    什么使用需要接口？</span><br><span class="line">        两个类中，拥有相同的方法，但是方法的实现过程不一样，可以用来约束必须有此方法</span><br><span class="line">        推荐一个接口，只去约束一个方法，不需要方法体</span><br><span class="line">*&#x2F;</span><br><span class="line"></span><br><span class="line">interface Eat &#123;</span><br><span class="line">    eat (food: string): void &#x2F;&#x2F; 在接口中限制行为的参数类型，返回值类型</span><br><span class="line">&#125;</span><br><span class="line">interface Run &#123;</span><br><span class="line">    run (distance: number): void &#x2F;&#x2F; 推荐一个接口只限制一个行为</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Person implements Eat, Run &#123; &#x2F;&#x2F; 接口关键词后面可以接多个接口，可以用逗号隔开即可</span><br><span class="line">    eat (food: string): void &#123;</span><br><span class="line">        console.log(&#96;优雅的吃$&#123;food&#125;&#96;)</span><br><span class="line">    &#125;</span><br><span class="line">    run (distance: number): void &#123;</span><br><span class="line">        console.log(&#96;直立行走$&#123;distance&#125;&#96;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class Animal implements Eat, Run &#123;</span><br><span class="line">    eat (food: string): void &#123;</span><br><span class="line">        console.log(&#96;呼噜呼噜的吃$&#123;food&#125;&#96;)</span><br><span class="line">    &#125;</span><br><span class="line">    run (distance: number): void &#123;</span><br><span class="line">        console.log(&#96;爬行$&#123;distance&#125;&#96;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>抽象类</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">我们都是人，人就是一个抽象的概念，人也属于动物，动物相对于人来说，又是一个抽象类</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>关键词：abstract</p>
+</li>
+<li><p>说明：用来概括类的父级，更高级的分类，可以设置有方法体的方法，也可以只设置方法名与参数类型，返回值类型</p>
+</li>
+<li><p>格式示例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">    抽象类：</span></span><br><span class="line"><span class="comment">        关键词：abstract</span></span><br><span class="line"><span class="comment">    什么时候需要使用抽象类:</span></span><br><span class="line"><span class="comment">        用来抽象类的属性与方法 ,一个类比较抽象的时候，就可以使用抽象类来概括</span></span><br><span class="line"><span class="comment">        作为抽象类的的类，只能被继承，不能作为子类，方法体不是必要的</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">abstract <span class="class"><span class="keyword">class</span> <span class="title">Animal_new</span> </span>&#123;</span><br><span class="line">    eat (food: string): <span class="keyword">void</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`呼噜噜的吃：<span class="subst">$&#123;food&#125;</span>`</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    abstract run (distance: number): <span class="keyword">void</span> <span class="comment">// 抽象类中，如果定义的方法不具备方法体，应该使用抽象类关键词来修饰</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span> <span class="keyword">extends</span> <span class="title">Animal_new</span> </span>&#123;</span><br><span class="line">    run(distance: number): <span class="keyword">void</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'四脚爬行'</span>, distance)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> chinese_rural_dog = <span class="keyword">new</span> Dog()</span><br><span class="line">chinese_rural_dog.eat(<span class="string">'骨头'</span>)</span><br><span class="line">chinese_rural_dog.run(<span class="number">100</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-8·泛型"><a href="#3-8·泛型" class="headerlink" title="3.8·泛型"></a>3.8·泛型</h2><blockquote>
+<p>将声明的函数定义为一个常量，用的时候再去填写常量值，提升复用率</p>
+</blockquote>
+<ul>
+<li><p>关键词：&lt;&gt;</p>
+</li>
+<li><p>说明：提高方法的复用率</p>
+</li>
+<li><p>实现逻辑:将函数的类型定义成为一个参数，当使用的时候，再去给参数赋值</p>
+</li>
+<li><p>格式示例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;* </span><br><span class="line">    泛型</span><br><span class="line">        关键词：&lt;&gt;</span><br><span class="line">        提高方法的复用率</span><br><span class="line">            实现逻辑:将函数声明的类型定义成为一个参数，当使用的时候，再去给参数赋值</span><br><span class="line">*&#x2F;</span><br><span class="line">function createArray&lt;T&gt; (length: number, value: T): T[] &#123; &#x2F;&#x2F; 通过泛型指定数据类型，提高代码的复用率</span><br><span class="line">    const arr &#x3D; Array&lt;T&gt;(length).fill(value)</span><br><span class="line">    return arr</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const res &#x3D; createArray&lt;string&gt;(3, &#39;foo&#39;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="3-9·类型声明处理第三方包"><a href="#3-9·类型声明处理第三方包" class="headerlink" title="3.9·类型声明处理第三方包"></a>3.9·类型声明处理第三方包</h2><blockquote>
+<p>有些第三方包未经ts类型处理，需要处理，以便能够正常使用</p>
+</blockquote>
+<ul>
+<li><p>关键词：declare</p>
+</li>
+<li><p>说明：主要用于兼容老的npm模块，目前大部分常用的npm包都有自己的类型声明模块，可以根据提示下载</p>
+</li>
+<li><p>格式示例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;* </span><br><span class="line">    类型声明 </span><br><span class="line">        关键词:  declare </span><br><span class="line">        说明：主要用于兼容老的npm模块，目前大部分常用的npm包都有自己的类型声明模块，可以根据提示下载</span><br><span class="line">*&#x2F;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 有类型声明模块的话下载引入类型声明模块包即可</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+                
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/2020/05/23/js异步处理学习笔记/" data-toggle="tooltip" data-placement="top" title="js异步处理学习笔记">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                <!-- tip start -->
+                
+
+                
+                <div class="comment_notes">
+                    <p>
+                        This is copyright.
+                    </p>
+                </div>
+                
+                <!-- tip end -->
+
+                <!-- Music start-->
+                
+                
+<link rel="stylesheet" href="/css/music-player/fonts/iconfont.css">
+
+
+<link rel="stylesheet" href="/css/music-player/css/reset.css">
+
+
+<link rel="stylesheet" href="/css/music-player/css/player.css">
+
+
+<div class="music-player">
+    <audio class="music-player__audio" ></audio>
+    <div class="music-player__main">
+        <div class="music-player__blur"></div>
+        <div class="music-player__disc">
+            <div class="music-player__image">
+                <img width="100%" src="" alt="">
+            </div>
+            <div class="music-player__pointer"><img width="100%" src="/img/cd_tou.png" alt=""></div>
+        </div>
+        <div class="music-player__controls">
+            <div class="music__info">
+                <h3 class="music__info--title">...</h3>
+                <p class="music__info--singer">...</p>
+            </div>
+            <div class="player-control">
+                <div class="player-control__content">
+                    <div class="player-control__btns">
+                        <div class="player-control__btn player-control__btn--prev"><i class="iconfont icon-prev"></i></div>
+                        <div class="player-control__btn player-control__btn--play"><i class="iconfont icon-play"></i></div>
+                        <div class="player-control__btn player-control__btn--next"><i class="iconfont icon-next"></i></div>
+                        <div class="player-control__btn player-control__btn--mode"><i class="iconfont icon-loop"></i></div>
+                    </div>
+                    <div class="player-control__volume">
+                        <div class="control__volume--icon player-control__btn"><i class="iconfont icon-volume"></i></div>
+                        <div class="control__volume--progress player_progress"></div>
+                    </div>
+                </div>
+                <div class="player-control__content">
+                    <div class="player__song--progress player_progress"></div>
+                    <div class="player__song--timeProgess nowTime">00:00</div>
+                    <div class="player__song--timeProgess totalTime">00:00</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/js/music-player/utill.js"></script>
+
+
+<script src="/js/music-player/jquery.min.js"></script>
+
+
+<script src="/js/music-player/player.js"></script>
+
+
+                
+                <!-- Music end -->
+
+                <!-- Sharing -->
+                
+                <!-- Sharing -->
+
+                <!-- gitment start -->
+                
+                <!-- gitment end -->
+
+                <!-- 来必力City版安装代码 -->
+                
+                <!-- City版安装代码已完成 -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      
+        <aside id="sidebar">
+          <div id="toc" class="toc-article">
+          <strong class="toc-title">Contents</strong>
+          
+            
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#课程概括"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">课程概括</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#1·类型的问题"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">1·类型的问题</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#1-1·强类型与弱类型"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">1.1·强类型与弱类型</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#1-2·静态类型与动态类型"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">1.2·静态类型与动态类型</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#1-3·JavaScript类型系统特征"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">1.3·JavaScript类型系统特征-</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#2·Flow"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">2·Flow</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#2-1·格式示例"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">2.1·格式示例</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#3·TypeScript"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">3·TypeScript</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#3-1·TypeScript的初始"><span class="toc-nav-number">4.1.</span> <span class="toc-nav-text">3.1·TypeScript的初始</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#3-2·基本数据类型"><span class="toc-nav-number">4.2.</span> <span class="toc-nav-text">3.2·基本数据类型</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#3-3·引用数据类型"><span class="toc-nav-number">4.3.</span> <span class="toc-nav-text">3.3·引用数据类型</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#3-4·类型系统新增数据结构"><span class="toc-nav-number">4.4.</span> <span class="toc-nav-text">3.4·类型系统新增数据结构</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#3-5·类型的推断与断言"><span class="toc-nav-number">4.5.</span> <span class="toc-nav-text">3.5·类型的推断与断言</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#3-6·类的修饰符"><span class="toc-nav-number">4.6.</span> <span class="toc-nav-text">3.6·类的修饰符</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#3-7·类的接口与抽象类"><span class="toc-nav-number">4.7.</span> <span class="toc-nav-text">3.7·类的接口与抽象类</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#3-8·泛型"><span class="toc-nav-number">4.8.</span> <span class="toc-nav-text">3.8·泛型</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#3-9·类型声明处理第三方包"><span class="toc-nav-number">4.9.</span> <span class="toc-nav-text">3.9·类型声明处理第三方包</span></a></li></ol></li></ol>
+            
+          
+          </div>
+        </aside>
+      
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#TS JS" title="TS JS">TS JS</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+
+
+<style  type="text/css">
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Abell99">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+<!-- 
+                 -->
+<!-- 
+                 -->
+
+                <!--  -->
+
+                <!--  -->
+
+                <!--  -->
+
+                <!--  -->
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Abel 2020 
+                    <br>
+                    Powered by 
+                    <a href="https://github.com/dusign/hexo-theme-snail" target="_blank" rel="noopener">
+                        <i>hexo-theme-snail</i>
+                    </a> | 
+                    <iframe name="star" style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0"
+                        width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=dusign&repo=hexo-theme-snail&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- Search -->
+
+<script src="/js/search.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://abel.run/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Search -->
+
+    <script type="text/javascript">      
+        var search_path = "search.xml";
+        if (search_path.length == 0) {
+            search_path = "search.xml";
+        }
+    var path = "/" + search_path;
+    searchFunc(path, 'local-search-input', 'local-search-result');
+    </script>
+
+
+<!-- busuanzi -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+
+    
+        <!-- background effects line -->
+        
+
+        
+            <script type="text/javascript" src="/js/mouse-click.js" content='[&quot;🌱&quot;,&quot;just do it&quot;,&quot;🍀&quot;]' color='[&quot;rgb(121,93,179)&quot; ,&quot;rgb(76,180,231)&quot; ,&quot;rgb(184,90,154)&quot;]'></script>
+        
+
+        <!-- background effects end -->
+    
+
+    <!--<script size="50" alpha='0.3' zIndex="-999" src="/js/ribbonStatic.js"></script>-->
+    
+        <script src="/js/ribbonDynamic.js"></script>
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+</body>
+
+</html>
